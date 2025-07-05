@@ -8,6 +8,7 @@ import linkedin from "../assets/icons/linkedin.svg";
 import github from "../assets/icons/github.svg";
 import myPic from "../assets/pic.PNG";
 import { useNavContext } from "../context/navContext";
+
 const Portfolio = () => {
     const { handleClick, setActive, Links, setSpin, click } = useNavContext();
 
@@ -156,15 +157,15 @@ const Portfolio = () => {
                 </section>
 
                 <section
-                    className="flex [&>*]:flex-1  h-[400px] border relative"
+                    className="flex [&>*]:flex-1  h-fit overflow-scroll border relative"
                     id="services"
                     data-section="services"
                 >
-                    <div className="mb-16 sticky top-0 border">
+                    <div className="mb-16 sticky top-0 border flex ">
                         <h2 className="">WHAT I OFFER</h2>
                     </div>
 
-                    <div className="space-y-8  h-[800px]  relative overflow-auto">
+                    <div className="h-[400px] overflow-scroll  relative overflow-y-scroll">
                         <div className="bg-gradient-to-br sticky top-8 from-blue-50 to-blue-100 p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-300">
                             <div className="bg-blue-500 p-4 rounded-xl w-fit mx-auto mb-6">
                                 <Palette className="w-8 h-8 text-white" />
