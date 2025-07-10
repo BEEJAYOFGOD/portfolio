@@ -17,9 +17,8 @@ const Portfolio = () => {
     useEffect(() => {
         const sections = document.querySelectorAll("[data-section]");
 
-        const isMobile = true;
-
-        console.log(sections);
+        // Detect if the screen is mobile using matchMedia
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -29,11 +28,13 @@ const Portfolio = () => {
                         const section =
                             entry.target.getAttribute("data-section");
 
-                        // history.pushState(
-                        //     null,
-                        //     "",
-                        //     `${section == "home" ? "/" : `#${section}`}`
-                        // );
+                        if (!isMobile) {
+                            history.pushState(
+                                null,
+                                "",
+                                `${section == "home" ? "/" : `#${section}`}`
+                            );
+                        }
 
                         let sectionIndex = Array.from(Links).findIndex(
                             (obj) => obj.name === section
@@ -82,7 +83,7 @@ const Portfolio = () => {
 
             <div className="md:w-[1000px] mx-auto  max-w-screen overflow-hidden">
                 <section
-                    className="relative flex items-center justify-center flex-col md:min-h-screen pt-36 md:py-0"
+                    className="relative flex items-center justify-center flex-col min-h-screen md:py-0"
                     id="home"
                     data-section="home"
                 >
@@ -95,7 +96,7 @@ const Portfolio = () => {
                         <span className="tracking-tighter  md:text-7xl flex text-4xl">
                             I'm
                         </span>
-                        <span className="role  ml-4  md:text-7xl flex text-4xl  relative   text-blue-600  after:absolute after:left-4 after:h-20 after:w-full after:border-l-3 after:border-blue-500 after:bg-white ">
+                        <span className="role  md:ml-4 ml-2  md:text-7xl flex text-4xl  relative   text-blue-600  after:absolute after:left-4 after:h-20 after:w-full after:border-l-3 after:border-blue-500 after:bg-white ">
                             {role}
                         </span>
                     </span>
@@ -107,10 +108,10 @@ const Portfolio = () => {
                         experience through clean code.
                     </p>
 
-                    <div className="flex gap-8 pt-12">
+                    <div className="flex md:gap-8 gap-4 md:pt-12 pt-28">
                         <a
                             href="https://wa.me/2348130639734"
-                            className="bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80 transition duration-300 hover:-translate-y-2 hover:transition-all hover:ease-in-out ease-in border"
+                            className="bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80 transition duration-300 hover:-translate-y-2 hover:transition-all hover:ease-in-out ease-in "
                         >
                             <img
                                 className="w-8 m-auto"
@@ -149,11 +150,15 @@ const Portfolio = () => {
                     data-section="about"
                     className="flex md:flex-row flex-col py-24 gap-12 "
                 >
-                    <div className="border">
-                        <img className="w-sm mx-auto" src={myPic} alt="" />
+                    <div className="">
+                        <img
+                            className="w-sm mx-auto hidden md:flex"
+                            src={myPic}
+                            alt=""
+                        />
                     </div>
-                    <div className="w-2xl my-auto px-8">
-                        <h2 className="text-blue-500 w-xs pb-2 md:text-5xl text-3xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-2 md:after:w-4/5 after:w-1/2 after:bg-blue-500  border">
+                    <div className="w-2xl my-auto px-6">
+                        <h2 className="text-blue-500 w-xs pb-2 md:text-5xl text-3xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-2 md:after:w-4/5 after:w-1/2 after:bg-blue-500 ">
                             ABOUT ME
                         </h2>
                         <p className=" font-bold mt-4 text-gray-700">
@@ -180,16 +185,16 @@ const Portfolio = () => {
                     id="services"
                     data-section="services"
                 >
-                    <div className="mb-16    border  ">
+                    <div className="mb-16      ">
                         <h2
                             // ref={af
-                            className={`md:text-5xl w-fit  text-3xl font-bold ml-8  border md:mx-auto md:text-center pb-2 relative tracking-wide text-blue-500 after:absolute after:bottom-0 after:left-0 after:content-['']   after:h-1 after:w-full hover:after:w-full after:duration-500 transition-all after:transition-all after:bg-blue-500 `}
+                            className={`md:text-5xl w-fit  text-3xl font-bold ml-8  md:mx-auto md:text-center pb-2 relative tracking-wide text-blue-500 after:absolute after:bottom-0 after:left-0 after:content-['']   after:h-2 after:w-full hover:after:w-full after:duration-500 transition-all after:transition-all after:bg-blue-500 `}
                         >
                             What I Offer
                         </h2>
                     </div>
 
-                    <div className=" md:grid md:grid-cols-3 md:gap-10 flex flex-col gap-6 px-8 md:px-0">
+                    <div className=" md:grid md:grid-cols-3 md:gap-10 flex flex-col gap-6 px-6 md:px-0">
                         <article className="service bg-gradient-to-b  from-blue-50 to-blue-300 p-8 rounded-2xl text-center hover:transform hover:scale-105 hover:rotate-1 transition-all duration-300 hover:duration-200 hover:shadow-md">
                             <div className="bg-blue-500 p-4 rounded-xl w-fit mx-auto mb-6">
                                 <Palette className="w-8 h-8 text-white" />
@@ -259,7 +264,7 @@ const Portfolio = () => {
 
                 <div
                     id="projects"
-                    className="px-8 md:px-0"
+                    className="px-6 md:px-0"
                     data-section="projects"
                 >
                     <h1 active className="text-4xl font-bold mb-4">
@@ -295,7 +300,7 @@ const Portfolio = () => {
                 </div>
                 <div
                     id="contact"
-                    className="px-8 md:px-0"
+                    className="px-6 md:px-0"
                     data-section="contact"
                 >
                     <h1 active className="text-4xl font-bold mb-4">
