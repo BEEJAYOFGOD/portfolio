@@ -2,8 +2,10 @@
 import { createContext, useContext, useState } from "react";
 
 // 1. Create the context
+// eslint-disable-next-line react-refresh/only-export-components
 export const NavContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useNavContext = () => {
     return useContext(NavContext);
 };
@@ -18,8 +20,9 @@ export const NavProvider = ({ children }) => {
         { name: "home", path: "/" },
         { name: "about", path: "#about" },
         { name: "services", path: "#services" },
-        { name: "contact", path: "#contact" },
+
         { name: "projects", path: "#projects" },
+        { name: "contact", path: "#contact" },
     ];
 
     const handleClick = (index) => {
@@ -38,7 +41,7 @@ export const NavProvider = ({ children }) => {
         setTimeout(() => {
             setSpin(false);
             setClick(false);
-        }, 800); // Reset spin after 3 seconds
+        }, 500); // Reset spin after 3 seconds
     };
 
     return (

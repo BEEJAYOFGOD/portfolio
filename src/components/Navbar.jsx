@@ -45,11 +45,11 @@ const Navbar = () => {
                             style={{
                                 transform: `translateX(${active * 100}%)`,
                             }}
-                            className=" w-1/5 transition-all duration-700 ease-in-out"
+                            className=" w-1/5 transition-all duration-[350ms] ease-in-out"
                         >
                             <div
                                 className={`h-2 rounded-xs w-2 mx-auto  bg-blue-500 ${
-                                    spin ? "animate-spin duration-300" : ""
+                                    spin ? "animate-spin duration-500" : ""
                                 }`}
                             />
                         </div>

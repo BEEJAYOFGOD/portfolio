@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Palette, Code2, Smartphone, Zap, Link } from "lucide-react";
 import whatsappIcon from "../assets/icons/whatsapp.svg";
 import twitter from "../assets/icons/twitter.svg";
@@ -11,6 +11,8 @@ import { useNavContext } from "../context/navContext";
 
 const Portfolio = () => {
     const { handleClick, setActive, Links, setSpin, click } = useNavContext();
+
+    const [role, setRole] = useState("Beejayofgod");
 
     useEffect(() => {
         const sections = document.querySelectorAll("[data-section]");
@@ -24,7 +26,6 @@ const Portfolio = () => {
                     if (entry.isIntersecting && !click) {
                         const section =
                             entry.target.getAttribute("data-section");
-                        console.log(section);
 
                         history.pushState(
                             null,
@@ -41,6 +42,7 @@ const Portfolio = () => {
                         console.log(sectionIndex);
 
                         setSpin(true);
+
                         setTimeout(() => {
                             setSpin(false);
                         }, 500);
@@ -59,11 +61,24 @@ const Portfolio = () => {
         };
     }, [click]);
 
+    useEffect(() => {
+        const roles = ["a Frontend Dev.", "Adekunle Bolaji", "a Web Developer"];
+
+        let currentIndex = 0;
+
+        const interval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % roles.length; // this it to prevent the current index from overlapping
+            setRole(roles[currentIndex]);
+        }, 4000); // Match the CSS animation duration
+
+        return () => clearInterval(interval); // Cleanup
+    }, []);
+
     return (
         <>
             <Navbar />
 
-            <div className="w-6xl mx-auto">
+            <div className="w-[1000px] mx-auto">
                 <section
                     className="relative flex items-center justify-center flex-col min-h-screen"
                     id="home"
@@ -74,10 +89,12 @@ const Portfolio = () => {
                         <span className="wave text-xl ml-1">👋</span>
                     </h1>
 
-                    <span className="font-bold text-6xl">
-                        <span className="tracking-tighter">I'm</span>
-                        <span className="ml-4 text-blue-600 tracking-wider">
-                            BEEJAYOFGOD
+                    <span className="font-bold text-6xl mt-4 flex h-20 justify-right b box-content  overflow-hidden">
+                        <span className="tracking-tighter text-7xl flex ">
+                            I'm
+                        </span>
+                        <span className="role  ml-4  text-7xl flex  relative   text-blue-600  after:absolute after:left-4 after:h-full after:w-full after:border-l-3 after:border-blue-500 after:bg-white">
+                            {role}
                         </span>
                     </span>
 
@@ -91,7 +108,7 @@ const Portfolio = () => {
                     <div className="flex gap-8 pt-12">
                         <a
                             href="https://wa.me/2348130639734"
-                            className="bg-blue-200 p-4 rounded-full hover:bg-blue-300/80 transition duration-300 hover:-translate-y-2 hover:transition-all hover:ease-in-out ease-in"
+                            className="bg-blue-200 p-4 rounded-full hover:bg-blue-300/80 transition duration-300 hover:-translate-y-2 hover:transition-all hover:ease-in-out ease-in border"
                         >
                             <img
                                 className="w-8 m-auto"
@@ -134,7 +151,7 @@ const Portfolio = () => {
                         <img className="w-sm" src={myPic} alt="" />
                     </div>
                     <div className="w-2xl my-auto">
-                        <h2 className="text-blue-500 w-xs pb-2 text-6xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-2 after:w-4/5 after:bg-blue-500">
+                        <h2 className="text-blue-500 w-xs pb-2 text-6xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-2 after:w-4/5 after:bg-blue-500 ">
                             ABOUT ME
                         </h2>
                         <p className=" font-bold mt-4 text-gray-700">
@@ -157,16 +174,21 @@ const Portfolio = () => {
                 </section>
 
                 <section
-                    className="flex [&>*]:flex-1  h-fit overflow-scroll border relative"
+                    className=" h-fit relative"
                     id="services"
                     data-section="services"
                 >
-                    <div className="mb-16 sticky top-0 border flex ">
-                        <h2 className="">WHAT I OFFER</h2>
+                    <div className="mb-16 sticky top-0  flex ">
+                        <h2
+                            // ref={af
+                            className={`text-5xl font-bold  mx-auto text-center pb-2 relative tracking-wide text-blue-500 after:absolute after:bottom-0 after:left-0 after:content-['']   after:h-1 after:w-full hover:after:w-full after:duration-500 transition-all after:transition-all after:bg-blue-500 `}
+                        >
+                            What I Offer
+                        </h2>
                     </div>
 
-                    <div className="h-[400px] overflow-scroll  relative overflow-y-scroll">
-                        <div className="bg-gradient-to-br sticky top-8 from-blue-50 to-blue-100 p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-300">
+                    <div className=" grid grid-cols-3 gap-10">
+                        <article className="service bg-gradient-to-b  from-blue-50 to-blue-300 p-8 rounded-2xl text-center hover:transform hover:scale-105 hover:rotate-1 transition-all duration-300 hover:duration-200 hover:shadow-md">
                             <div className="bg-blue-500 p-4 rounded-xl w-fit mx-auto mb-6">
                                 <Palette className="w-8 h-8 text-white" />
                             </div>
@@ -177,9 +199,9 @@ const Portfolio = () => {
                                 Creating beautiful, intuitive user interfaces
                                 with modern design principles
                             </p>
-                        </div>
+                        </article>
 
-                        <div className="bg-gradient-to-br sticky top-8 from-blue-50 to-blue-100 p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-300">
+                        <div className=" service bg-gradient-to-tr  from-blue-50 to-blue-300 p-8 rounded-2xl text-center  hover:scale-105 hover:transform  transition-all duration-300 hover:shadow-md   hover:rotate-1  hover:duration-200 ">
                             <div className="bg-blue-600 p-4 rounded-xl w-fit mx-auto mb-6">
                                 <Code2 className="w-8 h-8 text-white" />
                             </div>
@@ -192,7 +214,7 @@ const Portfolio = () => {
                             </p>
                         </div>
 
-                        <div className="bg-gradient-to-br sticky top-8 from-blue-50 to-blue-100 p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-300">
+                        <div className="service bg-gradient-to-b  from-blue-50 to-blue-300 p-8 rounded-2xl text-center  hover:scale-105 hover:transform  transition-all duration-300 hover:shadow-md   hover:rotate-1  hover:duration-200 ">
                             <div className="bg-blue-700 p-4 rounded-xl w-fit mx-auto mb-6">
                                 <Smartphone className="w-8 h-8 text-white" />
                             </div>
@@ -205,7 +227,7 @@ const Portfolio = () => {
                             </p>
                         </div>
 
-                        <div className="bg-gradient-to-br sticky top-8 from-blue-50 to-blue-100 p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-300">
+                        <div className="service bg-gradient-to-b  from-blue-50 to-blue-300 p-8 rounded-2xl text-center  hover:scale-105 hover:transform  transition-all duration-300 hover:shadow-md   hover:rotate-1  hover:duration-200 ">
                             <div className="bg-blue-500 p-4 rounded-xl w-fit mx-auto mb-6">
                                 <Zap className="w-8 h-8 text-white" />
                             </div>
@@ -218,7 +240,7 @@ const Portfolio = () => {
                             </p>
                         </div>
 
-                        <div className="bg-gradient-to-br from-blue-50 sticky top-8 to-blue-100 p-8 rounded-2xl text-center hover:transform hover:scale-105 transition-all duration-300">
+                        <div className="service bg-gradient-to-tl  from-blue-50 to-blue-300 p-8 rounded-2xl text-center  hover:scale-105 hover:transform  transition-all duration-300 hover:shadow-md   hover:rotate-1  hover:duration-200 ">
                             <div className="bg-blue-600 p-4 rounded-xl w-fit mx-auto mb-6">
                                 <Link className="w-8 h-8 text-white" />
                             </div>
@@ -233,138 +255,11 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                <div id="contact" className="" data-section="contact">
-                    <h1 active className="text-4xl font-bold mb-4">
-                        Portfolio
-                    </h1>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Expedita maiores explicabo aut mollitia, maxime error
-                        reprehenderit totam tempora laboriosam, quae sunt?
-                        Beatae inventore, laudantium autem deserunt ipsam earum
-                        rerum laboriosam! Lorem ipsum dolor sit amet
-                        consectetur, adipisicing elit. Officiis perspiciatis
-                        eveniet velit sed eius corrupti maiores aut id alias
-                        neque, possimus tenetur dignissimos nam perferendis
-                        tempora nemo numquam harum magnam! Lorem ipsum, dolor
-                        sit amet consectetur adipisicing elit. Rerum ad officia
-                        illo fuga. Corporis repellat esse natus rerum
-                        consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. v
-                    </p>
-                </div>
                 <div id="projects" data-section="projects">
                     <h1 active className="text-4xl font-bold mb-4">
                         Portfolio1
                     </h1>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Expedita maiores explicabo aut mollitia, maxime error
-                        reprehenderit totam tempora laboriosam, quae sunt?
-                        Beatae inventore, laudantium autem deserunt ipsam earum
-                        rerum laboriosam! Lorem ipsum dolor sit amet
-                        consectetur, adipisicing elit. Officiis perspiciatis
-                        eveniet velit sed eius corrupti maiores aut id alias
-                        neque, possimus tenetur dignissimos nam perferendis
-                        tempora nemo numquam harum magnam! Lorem ipsum, dolor
-                        sit amet consectetur adipisicing elit. Rerum ad officia
-                        illo fuga. Corporis repellat esse natus rerum
-                        consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
                         mollitia, maxime error reprehenderit totam tempora
                         laboriosam, quae sunt? Beatae inventore, laudantium
                         autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
@@ -389,19 +284,14 @@ const Portfolio = () => {
                         Rerum ad officia illo fuga. Corporis repellat esse natus
                         rerum consequatur accusamus perferendis illo, quaerat
                         accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
+                        voluptatibus. v
+                    </p>
+                </div>
+                <div id="contact" className="" data-section="contact">
+                    <h1 active className="text-4xl font-bold mb-4">
+                        Portfolio
+                    </h1>
+                    <p>
                         voluptatibus. Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Expedita maiores explicabo aut
                         mollitia, maxime error reprehenderit totam tempora
@@ -457,97 +347,6 @@ const Portfolio = () => {
                         voluptatibus. v
                     </p>
                 </div>
-
-                {/* <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p>
-            <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum
-                soluta asperiores eveniet ex ea impedit perspiciatis
-                consectetur. Neque suscipit nesciunt commodi nobis qui error
-                dolor voluptate dicta unde, a laborum? Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit. Dignissimos ab hic id fuga
-                quia amet! Accusamus, possimus expedita nam sequi eligendi
-                blanditiis doloribus odit impedit quidem laboriosam deserunt
-                repudiandae eius. Lorem
-            </p> */}
             </div>
         </>
     );
