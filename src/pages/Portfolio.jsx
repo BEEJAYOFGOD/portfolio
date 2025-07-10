@@ -91,11 +91,11 @@ const Portfolio = () => {
                         <span className="wave md:text-xl ml-1">👋</span>
                     </h1>
 
-                    <span className="font-bold text-5xl mt-4 flex md:h-20 justify-center box-content px-4 md:px-0 overflow-hidden">
-                        <span className="tracking-tighter  md:text-7xl flex ">
+                    <span className="font-bold mt-4 flex md:h-20 justify-center box-content px-4 md:px-0 overflow-hidden">
+                        <span className="tracking-tighter  md:text-7xl flex text-4xl">
                             I'm
                         </span>
-                        <span className="role  ml-4  md:text-7xl flex  relative   text-blue-600  after:absolute after:left-4 after:h-20 after:w-full after:border-l-3 after:border-blue-500 after:bg-white ">
+                        <span className="role  ml-4  md:text-7xl flex text-4xl  relative   text-blue-600  after:absolute after:left-4 after:h-20 after:w-full after:border-l-3 after:border-blue-500 after:bg-white ">
                             {role}
                         </span>
                     </span>
