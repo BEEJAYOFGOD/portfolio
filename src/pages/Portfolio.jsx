@@ -543,14 +543,14 @@ const Portfolio = () => {
                             debugging life.
                         </p>
 
-                        <div className="flex mt-8 items-center gap-2">
-                            <a className="flex w-fit items-center gap-2  md:text-base text-sm px-4 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <div className="flex mt-8 flex-col md:flex-row  items-left gap-4">
+                            <a className="flex items-center justify-center gap-4  md:text-base  px-4 md:py-3 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                                 <FileText size={20} />
                                 View Resume
                             </a>
                             <a
                                 href=""
-                                className="flex  items-center md:text-base text-sm  gap-2  border-blue-500 border px-4 py-4 rounded-md text-blue-600"
+                                className="flex  items-center justify-center  md:text-base  gap-4  border-blue-500 border px-4 py-4 md:py-3  rounded-md text-blue-600"
                             >
                                 <Phone className="animate-bounce" />
                                 Book a call with me
