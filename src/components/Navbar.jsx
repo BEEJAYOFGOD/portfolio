@@ -2,6 +2,7 @@ import { NavLink, Link } from "react-router-dom";
 import { useNavContext } from "../context/navContext";
 import { useEffect, useState } from "react";
 import { LucideCross } from "lucide-react";
+import { useRef } from "react";
 
 const Navbar = () => {
     const { handleClick, active, spin, Links } = useNavContext();
@@ -12,10 +13,23 @@ const Navbar = () => {
             document.body.classList.add(
                 "overflow-hidden",
                 "h-screen",
+                // "fixed",
+                "w-full"
+            );
+        } else {
+            document.body.classList.remove(
+                "overflow-hidden",
+                "h-screen",
                 "fixed",
                 "w-full"
             );
         }
+
+        return () => {
+            document.body.style.position = "";
+            document.body.style.width = "";
+            document.body.style.height = "";
+        };
     }, [openNav]);
 
     return (
@@ -27,10 +41,16 @@ const Navbar = () => {
                 >
                     Beejayofgod
                 </Link>
+                {openNav && (
+                    <div
+                        className="fixed w-1/5 inset-0 bg-black/40 z-40 md:hidden"
+                        onClick={() => setOpenNav(false)}
+                    ></div>
+                )}
 
                 <nav
                     className={`flex flex-col md:p-2 p-4 fixed md:static md:h-fit md:w-fit top-0 right-0 h-screen overflow-hidden  bg-white ${
-                        openNav ? "w-2/3" : "hidden"
+                        openNav ? "w-4/5" : "hidden"
                     } `}
                 >
                     <p
@@ -56,6 +76,19 @@ const Navbar = () => {
                                         ? "text-blue-500 font-semibold bg-gray-300 rounded-md p-3"
                                         : "text-gray-600"
                                 }`}
+                                onClick={(e) => {
+                                    document.body.classList.remove(
+                                        "overflow-hidden",
+                                        "h-screen",
+                                        "fixed",
+                                        "w-full"
+                                    );
+                                    handleClick(index, e);
+
+                                    setTimeout(() => {
+                                        setOpenNav(false);
+                                    }, 1000);
+                                }}
                             >
                                 <NavLink
                                     to={link.path}
