@@ -529,7 +529,7 @@ const Portfolio = () => {
                             </p>
                         </div>
 
-                        <p className="md:mt-8 mt-4 w-md opacity-60">
+                        <p className="md:mt-8 mt-4 md:w-md text-left opacity-60">
                             I'm a Computer Engineering student and frontend
                             developer with a knack for solving problems and
                             building clean, responsive websites for brands,
