@@ -519,7 +519,7 @@ const Portfolio = () => {
                             alt=""
                         />
                     </div>
-                    <div className="w-2xl my-auto px-6">
+                    <div className="md:w-2xl my-auto px-6">
                         <h2 className="text-blue-500 w-xs pb-2 md:text-5xl text-3xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-1  md:after:w-4/5 after:w-1/2 after:bg-blue-500 ">
                             ABOUT ME
                         </h2>
