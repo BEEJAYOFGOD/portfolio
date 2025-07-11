@@ -1,7 +1,24 @@
 import Navbar from "../components/Navbar";
 
 import { useEffect, useState } from "react";
-import { Palette, Code2, Smartphone, Zap, Link } from "lucide-react";
+import {
+    Palette,
+    Code2,
+    Smartphone,
+    Zap,
+    Link,
+    FileText,
+    Phone,
+    PhoneForwarded,
+    ShoppingCart,
+    BarChart3,
+    Rocket,
+    Globe,
+    Users,
+    Search,
+    Shield,
+    Layers,
+} from "lucide-react";
 import whatsappIcon from "../assets/icons/whatsapp.svg";
 import twitter from "../assets/icons/twitter.svg";
 import linkedin from "../assets/icons/linkedin.svg";
@@ -13,12 +30,18 @@ const Portfolio = () => {
     const { handleClick, setActive, Links, setSpin, click } = useNavContext();
 
     const [role, setRole] = useState("Beejayofgod");
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     useEffect(() => {
         const sections = document.querySelectorAll("[data-section]");
-
-        // Detect if the screen is mobile using matchMedia
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -62,7 +85,7 @@ const Portfolio = () => {
         return () => {
             sections.forEach((section) => observer.unobserve(section));
         };
-    }, [click]);
+    }, [click, isMobile]);
 
     useEffect(() => {
         const roles = ["a Frontend Dev.", "Adekunle Bolaji", "a Web Developer"];
@@ -77,13 +100,352 @@ const Portfolio = () => {
         return () => clearInterval(interval); // Cleanup
     }, []);
 
+    // const services = [
+    //     {
+    //         icon: Palette,
+    //         title: "UI/UX Implementation",
+    //         description:
+    //             "Transforming your Figma designs into pixel-perfect, interactive React and Next.js applications. I specialize in converting static designs into dynamic, responsive components while maintaining design consistency and implementing smooth animations and micro-interactions that enhance user experience.",
+    //         gradient: "from-purple-50 to-purple-300",
+    //         iconBg: "bg-purple-500",
+    //     },
+    //     {
+    //         icon: Code2,
+    //         title: "React & Next.js Development",
+    //         description:
+    //             "Building scalable, production-ready web applications using modern React patterns and Next.js features. This includes server-side rendering, static site generation, API routes, and advanced optimization techniques to ensure your application loads fast, ranks well in search engines, and provides an exceptional user experience across all devices.",
+    //         gradient: "from-blue-50 to-blue-300",
+    //         iconBg: "bg-blue-600",
+    //     },
+    //     {
+    //         icon: Smartphone,
+    //         title: "Responsive Web Design",
+    //         description:
+    //             "Creating mobile-first, responsive designs that adapt seamlessly to any screen size or device. I ensure your application provides consistent functionality and visual appeal across desktop, tablet, and mobile platforms, with careful attention to touch interactions, loading performance, and accessibility standards for all users.",
+    //         gradient: "from-green-50 to-green-300",
+    //         iconBg: "bg-green-500",
+    //     },
+    //     {
+    //         icon: ShoppingCart,
+    //         title: "E-commerce Solutions",
+    //         description:
+    //             "Developing comprehensive e-commerce platforms with secure payment processing, inventory management, shopping cart functionality, and customer account systems. I integrate popular payment gateways like Stripe and PayPal, implement advanced filtering and search capabilities, and create admin dashboards for easy product and order management.",
+    //         gradient: "from-orange-50 to-orange-300",
+    //         iconBg: "bg-orange-500",
+    //     },
+    //     {
+    //         icon: BarChart3,
+    //         title: "Analytics & Dashboards",
+    //         description:
+    //             "Creating interactive data visualization dashboards that transform complex business data into actionable insights. Using libraries like Chart.js, D3.js, and Recharts, I build custom analytics interfaces that help you track KPIs, monitor user behavior, and make data-driven decisions with real-time updates and intuitive filtering options.",
+    //         gradient: "from-indigo-50 to-indigo-300",
+    //         iconBg: "bg-indigo-600",
+    //     },
+    //     {
+    //         icon: Rocket,
+    //         title: "MVP Development",
+    //         description:
+    //             "Rapid development of minimum viable products to validate your startup ideas quickly and cost-effectively. I focus on core functionality, clean user interfaces, and scalable architecture that allows for future growth. This includes user authentication, basic CRUD operations, and essential features needed to test your concept in the market.",
+    //         gradient: "from-pink-50 to-pink-300",
+    //         iconBg: "bg-pink-500",
+    //     },
+    //     {
+    //         icon: Globe,
+    //         title: "Landing Pages & Websites",
+    //         description:
+    //             "Designing and developing high-converting landing pages and corporate websites that establish your professional online presence. I focus on conversion optimization, fast loading times, SEO-friendly structure, and compelling call-to-actions that drive business results. Each page is crafted to tell your story and convert visitors into customers.",
+    //         gradient: "from-teal-50 to-teal-300",
+    //         iconBg: "bg-teal-600",
+    //     },
+    //     {
+    //         icon: Users,
+    //         title: "User Portal Development",
+    //         description:
+    //             "Building comprehensive user management systems including admin panels, customer portals, and role-based access control. I create intuitive interfaces for managing users, content, and business operations, with features like user profiles, permission systems, activity tracking, and customizable dashboards tailored to your specific business workflows.",
+    //         gradient: "from-red-50 to-red-300",
+    //         iconBg: "bg-red-500",
+    //     },
+    //     {
+    //         icon: Search,
+    //         title: "SEO & Performance",
+    //         description:
+    //             "Implementing comprehensive search engine optimization strategies and performance enhancements to maximize your online visibility and user experience. This includes technical SEO, Core Web Vitals optimization, lazy loading, code splitting, and advanced caching strategies that improve your search rankings and conversion rates.",
+    //         gradient: "from-yellow-50 to-yellow-300",
+    //         iconBg: "bg-yellow-500",
+    //     },
+    //     {
+    //         icon: Shield,
+    //         title: "Security & Authentication",
+    //         description:
+    //             "Implementing robust security measures including secure user authentication, authorization systems, data encryption, and compliance with industry standards like GDPR. I integrate authentication providers, implement JWT tokens, secure API calls, and ensure your application protects sensitive user data while maintaining a smooth user experience.",
+    //         gradient: "from-gray-50 to-gray-300",
+    //         iconBg: "bg-gray-600",
+    //     },
+    //     {
+    //         icon: Layers,
+    //         title: "API Integration",
+    //         description:
+    //             "Seamlessly connecting your frontend applications with backend services, third-party APIs, and existing business systems. I handle complex data fetching, state management, error handling, and real-time updates using modern techniques like React Query, SWR, and WebSockets to ensure your application stays synchronized and responsive.",
+    //         gradient: "from-violet-50 to-violet-300",
+    //         iconBg: "bg-violet-600",
+    //     },
+    //     {
+    //         icon: Zap,
+    //         title: "Progressive Web Apps",
+    //         description:
+    //             "Developing modern web applications that combine the best of web and native app experiences. PWAs work offline, load instantly, and can be installed on users' devices. I implement service workers, caching strategies, push notifications, and background sync to create app-like experiences that increase user engagement and retention.",
+    //         gradient: "from-cyan-50 to-cyan-300",
+    //         iconBg: "bg-cyan-500",
+    //     },
+    // ];
+
+    // Services data object
+    // const services = [
+    //     {
+    //         id: 1,
+    //         title: "UI/UX Design",
+    //         description:
+    //             "Creating beautiful, intuitive user interfaces with modern design principles",
+    //         icon: "Palette",
+    //         bgGradient: "bg-gradient-to-b from-blue-50 to-blue-300",
+    //         iconBg: "bg-blue-500",
+    //     },
+    //     {
+    //         id: 2,
+    //         title: "Frontend Development",
+    //         description:
+    //             "Building responsive, interactive web applications using React and modern frameworks",
+    //         icon: "Code2",
+    //         bgGradient: "bg-gradient-to-tr from-blue-50 to-blue-300",
+    //         iconBg: "bg-blue-600",
+    //     },
+    //     {
+    //         id: 3,
+    //         title: "Mobile-First Design",
+    //         description:
+    //             "Ensuring your website looks perfect on all devices and screen sizes",
+    //         icon: "Smartphone",
+    //         bgGradient: "bg-gradient-to-b from-blue-50 to-blue-300",
+    //         iconBg: "bg-blue-700",
+    //     },
+    //     {
+    //         id: 4,
+    //         title: "Performance Optimization",
+    //         description:
+    //             "Fast-loading websites optimized for the best user experience",
+    //         icon: "Zap",
+    //         bgGradient: "bg-gradient-to-b from-blue-50 to-blue-300",
+    //         iconBg: "bg-blue-500",
+    //     },
+    //     {
+    //         id: 5,
+    //         title: "API Integration",
+    //         description:
+    //             "Seamless integration with third-party services and databases",
+    //         icon: "Link",
+    //         bgGradient: "bg-gradient-to-tl from-blue-50 to-blue-300",
+    //         iconBg: "bg-blue-600",
+    //     },
+    // ];
+
+    // Icon mapping (assuming you're using lucide-react)
+
+    // const services = [
+    //     {
+    //         icon: Palette,
+    //         title: "UI/UX Implementation",
+    //         description:
+    //             "Transforming your Figma designs into pixel-perfect, interactive React and Next.js applications. I specialize in converting static designs into dynamic, responsive components while maintaining design consistency and implementing smooth animations and micro-interactions that enhance user experience.",
+    //         gradient: "from-purple-50 to-purple-300",
+    //         iconBg: "bg-purple-500",
+    //     },
+    //     {
+    //         icon: Code2,
+    //         title: "React & Next.js Development",
+    //         description:
+    //             "Building scalable, production-ready web applications using modern React patterns and Next.js features...",
+    //         gradient: "from-blue-50 to-blue-300",
+    //         iconBg: "bg-blue-600",
+    //     },
+    //     {
+    //         icon: Smartphone,
+    //         title: "Responsive Web Design",
+    //         description:
+    //             "Creating mobile-first, responsive designs that adapt seamlessly to any screen size or device...",
+    //         gradient: "from-green-50 to-green-300",
+    //         iconBg: "bg-green-500",
+    //     },
+    //     {
+    //         icon: ShoppingCart,
+    //         title: "E-commerce Solutions",
+    //         description:
+    //             "Developing comprehensive e-commerce platforms with secure payment processing, inventory management...",
+    //         gradient: "from-orange-50 to-orange-300",
+    //         iconBg: "bg-orange-500",
+    //     },
+    //     {
+    //         icon: BarChart3,
+    //         title: "Analytics & Dashboards",
+    //         description:
+    //             "Creating interactive data visualization dashboards that transform complex business data into actionable insights...",
+    //         gradient: "from-indigo-50 to-indigo-300",
+    //         iconBg: "bg-indigo-600",
+    //     },
+    //     {
+    //         icon: Rocket,
+    //         title: "MVP Development",
+    //         description:
+    //             "Rapid development of minimum viable products to validate your startup ideas quickly and cost-effectively...",
+    //         gradient: "from-pink-50 to-pink-300",
+    //         iconBg: "bg-pink-500",
+    //     },
+    //     {
+    //         icon: Globe,
+    //         title: "Landing Pages & Websites",
+    //         description:
+    //             "Designing and developing high-converting landing pages and corporate websites...",
+    //         gradient: "from-teal-50 to-teal-300",
+    //         iconBg: "bg-teal-600",
+    //     },
+    //     {
+    //         icon: Users,
+    //         title: "User Portal Development",
+    //         description:
+    //             "Building comprehensive user management systems including admin panels, customer portals...",
+    //         gradient: "from-red-50 to-red-300",
+    //         iconBg: "bg-red-500",
+    //     },
+    //     {
+    //         icon: Search,
+    //         title: "SEO & Performance",
+    //         description:
+    //             "Implementing comprehensive search engine optimization strategies and performance enhancements...",
+    //         gradient: "from-yellow-50 to-yellow-300",
+    //         iconBg: "bg-yellow-500",
+    //     },
+    //     {
+    //         icon: Shield,
+    //         title: "Security & Authentication",
+    //         description:
+    //             "Implementing robust security measures including secure user authentication...",
+    //         gradient: "from-gray-50 to-gray-300",
+    //         iconBg: "bg-gray-600",
+    //     },
+    //     {
+    //         icon: Layers,
+    //         title: "API Integration",
+    //         description:
+    //             "Seamlessly connecting your frontend applications with backend services, third-party APIs...",
+    //         gradient: "from-violet-50 to-violet-300",
+    //         iconBg: "bg-violet-600",
+    //     },
+    //     {
+    //         icon: Zap,
+    //         title: "Progressive Web Apps",
+    //         description:
+    //             "Developing modern web applications that combine the best of web and native app experiences...",
+    //         gradient: "from-cyan-50 to-cyan-300",
+    //         iconBg: "bg-cyan-500",
+    //     },
+    // ];
+    // const iconComponents = {
+    //     Palette,
+    //     Code2,
+    //     Smartphone,
+    //     Zap,
+    //     Link,
+    // };
+    const services = [
+        {
+            icon: Palette,
+            title: "UI/UX Implementation",
+            description:
+                "Transforming your Figma designs into pixel-perfect, interactive React and Next.js applications. I specialize in converting static designs into dynamic, responsive components while maintaining design consistency and implementing smooth animations and micro-interactions that enhance user experience.",
+            gradient: "from-purple-50 to-purple-300",
+            iconBg: "bg-purple-500",
+        },
+        {
+            icon: Code2,
+            title: "React & Next.js Development",
+            description:
+                "Building scalable, production-ready web applications using modern React patterns and Next.js features. This includes server-side rendering, static site generation, API routes, and advanced optimization techniques to ensure your application loads fast, ranks well in search engines, and provides an exceptional user experience across all devices.",
+            gradient: "from-blue-50 to-blue-300",
+            iconBg: "bg-blue-600",
+        },
+        {
+            icon: Smartphone,
+            title: "Responsive Web Design",
+            description:
+                "Creating mobile-first, responsive designs that adapt seamlessly to any screen size or device. I ensure your application provides consistent functionality and visual appeal across desktop, tablet, and mobile platforms, with careful attention to touch interactions, loading performance, and accessibility standards for all users.",
+            gradient: "from-green-50 to-green-300",
+            iconBg: "bg-green-500",
+        },
+        // {
+        //     icon: ShoppingCart,
+        //     title: "E-commerce Solutions",
+        //     description:
+        //         "Developing comprehensive e-commerce platforms with secure payment processing, inventory management, shopping cart functionality, and customer account systems. I integrate popular payment gateways like Stripe and PayPal, implement advanced filtering and search capabilities, and create admin dashboards for easy product and order management.",
+        //     gradient: "from-orange-50 to-orange-300",
+        //     iconBg: "bg-orange-500",
+        // },
+        {
+            icon: BarChart3,
+            title: "Analytics & Dashboards",
+            description:
+                "Creating interactive data visualization dashboards that transform complex business data into actionable insights. Using libraries like Chart.js, D3.js, and Recharts, I build custom analytics interfaces that help you track KPIs, monitor user behavior, and make data-driven decisions with real-time updates and intuitive filtering options.",
+            gradient: "from-indigo-50 to-indigo-300",
+            iconBg: "bg-indigo-600",
+        },
+        {
+            icon: Rocket,
+            title: "MVP Development",
+            description:
+                "Rapid development of minimum viable products to validate your startup ideas quickly and cost-effectively. I focus on core functionality, clean user interfaces, and scalable architecture that allows for future growth. This includes user authentication, basic CRUD operations, and essential features needed to test your concept in the market.",
+            gradient: "from-pink-50 to-pink-300",
+            iconBg: "bg-pink-500",
+        },
+        {
+            icon: Globe,
+            title: "Landing Pages & Websites",
+            description:
+                "Designing and developing high-converting landing pages and corporate websites that establish your professional online presence. I focus on conversion optimization, fast loading times, SEO-friendly structure, and compelling call-to-actions that drive business results. Each page is crafted to tell your story and convert visitors into customers.",
+            gradient: "from-teal-50 to-teal-300",
+            iconBg: "bg-teal-600",
+        },
+        // {
+        //     icon: Users,
+        //     title: "User Portal Development",
+        //     description:
+        //         "Building comprehensive user management systems including admin panels, customer portals, and role-based access control. I create intuitive interfaces for managing users, content, and business operations, with features like user profiles, permission systems, activity tracking, and customizable dashboards tailored to your specific business workflows.",
+        //     gradient: "from-red-50 to-red-300",
+        //     iconBg: "bg-red-500",
+        // },
+        {
+            icon: Search,
+            title: "SEO & Performance",
+            description:
+                "Implementing comprehensive search engine optimization strategies and performance enhancements to maximize your online visibility and user experience. This includes technical SEO, Core Web Vitals optimization, lazy loading, code splitting, and advanced caching strategies that improve your search rankings and conversion rates.",
+            gradient: "from-yellow-50 to-yellow-300",
+            iconBg: "bg-yellow-500",
+        },
+
+        {
+            icon: Layers,
+            title: "API Integration",
+            description:
+                "Seamlessly connecting your frontend applications with backend services, third-party APIs, and existing business systems. I handle complex data fetching, state management, error handling, and real-time updates using modern techniques like React Query, SWR, and WebSockets to ensure your application stays synchronized and responsive.",
+            gradient: "from-violet-50 to-violet-300",
+            iconBg: "bg-violet-600",
+        },
+    ];
+
     return (
         <>
             <Navbar />
 
             <div className="md:w-[1000px] mx-auto  max-w-screen overflow-hidden">
                 <section
-                    className="relative flex items-center justify-center flex-col min-h-screen md:py-0"
+                    className="relative flex  items-center justify-center flex-col min-h-screen md:py-0"
                     id="home"
                     data-section="home"
                 >
@@ -158,12 +520,15 @@ const Portfolio = () => {
                         />
                     </div>
                     <div className="w-2xl my-auto px-6">
-                        <h2 className="text-blue-500 w-xs pb-2 md:text-5xl text-3xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-2 md:after:w-4/5 after:w-1/2 after:bg-blue-500 ">
+                        <h2 className="text-blue-500 w-xs pb-2 md:text-5xl text-3xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-1  md:after:w-4/5 after:w-1/2 after:bg-blue-500 ">
                             ABOUT ME
                         </h2>
-                        <p className=" font-bold mt-4 text-gray-700">
-                            ADEKUNLE BOLAJI - DEVELOPER
-                        </p>
+                        <div className="flex md:flex-row items-start flex-col justify-start  gap-4">
+                            <p className=" font-bold mt-4 text-gray-700 ">
+                                ADEKUNLE BOLAJI - DEVELOPER
+                            </p>
+                        </div>
+
                         <p className="md:mt-8 mt-4 w-md opacity-60">
                             I'm a Computer Engineering student and frontend
                             developer with a knack for solving problems and
@@ -177,99 +542,66 @@ const Portfolio = () => {
                             unwinding with a heated round of eFootball—my way of
                             debugging life.
                         </p>
+
+                        <div className="flex mt-8 items-center gap-2">
+                            <a className="flex w-fit items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                                <FileText size={20} />
+                                View Resume
+                            </a>
+                            <a
+                                href=""
+                                className="flex  items-center  gap-2  border-blue-500 border p-2 rounded-md text-blue-600"
+                            >
+                                <Phone className="animate-bounce" />
+                                Book a call with me
+                            </a>
+                        </div>
                     </div>
                 </section>
 
                 <section
-                    className=" h-fit relative"
+                    className="h-fit relative"
                     id="services"
                     data-section="services"
                 >
-                    <div className="mb-16      ">
+                    <div className="mb-16">
                         <h2
-                            // ref={af
-                            className={`md:text-5xl w-fit  text-3xl font-bold ml-8  md:mx-auto md:text-center pb-2 relative tracking-wide text-blue-500 after:absolute after:bottom-0 after:left-0 after:content-['']   after:h-2 after:w-full hover:after:w-full after:duration-500 transition-all after:transition-all after:bg-blue-500 `}
+                            className={`md:text-5xl w-fit text-3xl font-bold ml-8 md:mx-auto md:text-center pb-2 relative tracking-wide text-blue-500 after:absolute after:bottom-0 after:left-0 after:content-[''] after:h-1 after:w-full hover:after:w-full after:duration-500 transition-all after:transition-all after:bg-blue-500`}
                         >
                             What I Offer
                         </h2>
                     </div>
 
-                    <div className=" md:grid md:grid-cols-3 md:gap-10 flex flex-col gap-6 px-6 md:px-0">
-                        <article className="service bg-gradient-to-b  from-blue-50 to-blue-300 p-8 rounded-2xl text-center hover:transform hover:scale-105 hover:rotate-1 transition-all duration-300 hover:duration-200 hover:shadow-md">
-                            <div className="bg-blue-500 p-4 rounded-xl w-fit mx-auto mb-6">
-                                <Palette className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-3">
-                                UI/UX Design
-                            </h3>
-                            <p className="text-gray-600">
-                                Creating beautiful, intuitive user interfaces
-                                with modern design principles
-                            </p>
-                        </article>
-
-                        <div className=" service bg-gradient-to-tr  from-blue-50 to-blue-300 p-8 rounded-2xl text-center  hover:scale-105 hover:transform  transition-all duration-300 hover:shadow-md   hover:rotate-1  hover:duration-200 ">
-                            <div className="bg-blue-600 p-4 rounded-xl w-fit mx-auto mb-6">
-                                <Code2 className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-3">
-                                Frontend Development
-                            </h3>
-                            <p className="text-gray-600">
-                                Building responsive, interactive web
-                                applications using React and modern frameworks
-                            </p>
-                        </div>
-
-                        <div className="service bg-gradient-to-b  from-blue-50 to-blue-300 p-8 rounded-2xl text-center  hover:scale-105 hover:transform  transition-all duration-300 hover:shadow-md   hover:rotate-1  hover:duration-200 ">
-                            <div className="bg-blue-700 p-4 rounded-xl w-fit mx-auto mb-6">
-                                <Smartphone className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-3">
-                                Mobile-First Design
-                            </h3>
-                            <p className="text-gray-600">
-                                Ensuring your website looks perfect on all
-                                devices and screen sizes
-                            </p>
-                        </div>
-
-                        <div className="service bg-gradient-to-b  from-blue-50 to-blue-300 p-8 rounded-2xl text-center  hover:scale-105 hover:transform  transition-all duration-300 hover:shadow-md   hover:rotate-1  hover:duration-200 ">
-                            <div className="bg-blue-500 p-4 rounded-xl w-fit mx-auto mb-6">
-                                <Zap className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-3">
-                                Performance Optimization
-                            </h3>
-                            <p className="text-gray-600">
-                                Fast-loading websites optimized for the best
-                                user experience
-                            </p>
-                        </div>
-
-                        <div className="service bg-gradient-to-tl  from-blue-50 to-blue-300 p-8 rounded-2xl text-center  hover:scale-105 hover:transform  transition-all duration-300 hover:shadow-md   hover:rotate-1  hover:duration-200 ">
-                            <div className="bg-blue-600 p-4 rounded-xl w-fit mx-auto mb-6">
-                                <Link className="w-8 h-8 text-white" />
-                            </div>
-                            <h3 className="text-xl font-bold text-gray-800 mb-3">
-                                API Integration
-                            </h3>
-                            <p className="text-gray-600">
-                                Seamless integration with third-party services
-                                and databases
-                            </p>
-                        </div>
+                    <div className="md:grid md:grid-cols-3 md:gap-10 flex flex-col gap-6 px-6 md:px-0">
+                        {services.map((service, index) => {
+                            const Icon = service.icon;
+                            return (
+                                <div
+                                    key={index}
+                                    className={`rounded-2xl shadow-md p-6 bg-gradient-to-br ${service.gradient}`}
+                                >
+                                    <div
+                                        className={`w-12 h-12 flex items-center justify-center rounded-md ${service.iconBg} mb-4`}
+                                    >
+                                        <Icon className="text-white" />
+                                    </div>
+                                    <h3 className="text-lg font-semibold mb-2">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-gray-700">
+                                        {service.description}
+                                    </p>
+                                </div>
+                            );
+                        })}
                     </div>
                 </section>
-
                 <div
                     id="projects"
                     className="px-6 md:px-0"
                     data-section="projects"
                 >
-                    <h1 active className="text-4xl font-bold mb-4">
-                        Portfolio1
-                    </h1>
+                    <h1 className="text-4xl font-bold mb-4">Portfolio1</h1>
                     <p>
                         mollitia, maxime error reprehenderit totam tempora
                         laboriosam, quae sunt? Beatae inventore, laudantium

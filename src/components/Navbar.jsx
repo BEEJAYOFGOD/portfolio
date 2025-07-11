@@ -2,14 +2,25 @@ import { NavLink, Link } from "react-router-dom";
 import { useNavContext } from "../context/navContext";
 import { useEffect, useState } from "react";
 import { LucideCross } from "lucide-react";
-import { useRef } from "react";
+import { MenuIcon } from "lucide-react";
+import { XIcon } from "lucide-react";
 
 const Navbar = () => {
     const { handleClick, active, spin, Links } = useNavContext();
     const [openNav, setOpenNav] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
-        if (openNav) {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        if (openNav && isMobile) {
             document.body.classList.add(
                 "overflow-hidden",
                 "h-screen",
@@ -20,7 +31,7 @@ const Navbar = () => {
             document.body.classList.remove(
                 "overflow-hidden",
                 "h-screen",
-                "fixed",
+                // "fixed",
                 "w-full"
             );
         }
@@ -30,30 +41,50 @@ const Navbar = () => {
             document.body.style.width = "";
             document.body.style.height = "";
         };
-    }, [openNav]);
+    }, [openNav, isMobile]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.scrollY;
+            setIsScrolled(scrollTop > 50); // Change threshold as needed
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <>
-            <header className="flex fixed top-0 border-gray-200 md:backdrop-blur-md  justify-between items-center md:px-46 p-4 bg-white/90 w-full text-sm shadow-xs z-50">
+            <header
+                className={`
+          flex justify-between items-center  bg-white/90 backdrop-blur-md border border-gray-200 shadow-sm z-50 w-full
+          transition-all duration-150 ease-in-out px-8 md:px-8 md:py-2  py-4
+          ${
+              isScrolled
+                  ? "fixed top-0 left-0 right-0 md:sticky md:top-5 md:w-[68%] mx-auto md:rounded-4xl md:px-8"
+                  : "fixed md:top-0 md:w-full md:mx-auto "
+          }
+        `}
+            >
                 <Link
-                    className="text-blue-600 text-base flex relative flex-col font-semibold after:content-[''] after:right-0 after:top-6 after:bottom-0 after:transition-all after:ease-in-out duration-[3s] after:w-1/2 after:absolute after:h-[2px] md:hover:after:w-full md:after:bg-blue-600 after:rounded-full"
+                    className="text-blue-600 md:text-base text-xl flex relative flex-col font-semibold after:content-[''] after:right-0 after:top-6 after:bottom-0 after:transition-all after:ease-in-out duration-[3s] after:w-1/2 after:absolute after:h-[2px] md:hover:after:w-full md:after:bg-blue-600 after:rounded-full"
                     to="/"
                 >
                     Beejayofgod
                 </Link>
                 {openNav && (
                     <div
-                        className="fixed w-1/5 inset-0 bg-black/40 z-40 md:hidden"
+                        className="fixed  h-screen inset-0 bg-black/40 z-0 md:hidden"
                         onClick={() => setOpenNav(false)}
                     ></div>
                 )}
 
                 <nav
-                    className={`flex flex-col md:p-2 p-4 fixed md:static md:h-fit md:w-fit top-0 right-0 h-screen overflow-hidden  bg-white ${
-                        openNav ? "w-4/5" : "hidden"
+                    className={`flex flex-col md:p-2 p-4 fixed md:static md:h-fit md:w-fit top-0 right-0 h-screen overflow-hidden  ${
+                        openNav ? "w-4/5 bg-white/90" : "hidden md:flex"
                     } `}
                 >
-                    <p
+                    <XIcon
                         onClick={() => {
                             setOpenNav(!openNav);
                             document.body.classList.remove(
@@ -63,19 +94,17 @@ const Navbar = () => {
                                 "w-full"
                             );
                         }}
-                        className="text-2xl text-right border transition pr-2"
-                    >
-                        +
-                    </p>
-                    <ul className="flex py-1 md:[&>*]:flex-1 [&>*]:text-center md:flex-row flex-col gap-4 items-start capitalize md:w-md w-full  ">
+                        className="text-2xl ml-auto   text-blue-500 transition pr-2 md:hidden"
+                    />
+                    <ul className="flex py-1 md:[&>*]:flex-1 [&>*]:text-center md:flex-row flex-col gap-4 md:gap-0 items-start md:items-center capitalize md:w-md w-full  ">
                         {Links.map((link, index) => (
                             <li
                                 key={index}
-                                className={`transition-colors ease-in-out text-base w-full duration-700  hover:text-blue-400 cursor-pointer capitalize ${
-                                    active === index
-                                        ? "text-blue-500 font-semibold bg-gray-300 rounded-md p-3"
+                                className={`transition-colors ease-in-out text-base w-full duration-700 flex  hover:text-blue-400 cursor-pointer capitalize ${
+                                    openNav && active === index
+                                        ? "text-blue-500 font-semibold  rounded-md p-3 md:p-0 bg-gray-300/60"
                                         : "text-gray-600"
-                                }`}
+                                } `}
                                 onClick={(e) => {
                                     document.body.classList.remove(
                                         "overflow-hidden",
@@ -85,9 +114,7 @@ const Navbar = () => {
                                     );
                                     handleClick(index, e);
 
-                                    setTimeout(() => {
-                                        setOpenNav(false);
-                                    }, 1000);
+                                    setOpenNav(false);
                                 }}
                             >
                                 <NavLink
@@ -96,7 +123,7 @@ const Navbar = () => {
                                         e.preventDefault();
                                         handleClick(index, e);
                                     }}
-                                    className="w-full md:inline flex justify-start h-full focus:outline-none capitalize "
+                                    className="w-full flex justify-start  md:justify-center h-full focus:outline-none capitalize "
                                     type="button"
                                 >
                                     {link.name}
@@ -110,7 +137,7 @@ const Navbar = () => {
                             style={{
                                 transform: `translateX(${active * 100}%)`,
                             }}
-                            className=" w-1/5 transition-all duration-[350ms] ease-in-out"
+                            className=" w-1/5 transition-all duration-[350ms] ease-in-out "
                         >
                             <div
                                 className={`h-2 rounded-xs aspect-square mx-auto  bg-blue-500 ${
@@ -121,11 +148,10 @@ const Navbar = () => {
                     </div>
                 </nav>
                 <div>
-                    <button className="theme-switcher">butn</button>
                     <button>
-                        <LucideCross
+                        <MenuIcon
                             onClick={() => setOpenNav(!openNav)}
-                            className="text-2xl md:hidden"
+                            className="text-2xl md:hidden text-blue-600"
                         />
                     </button>
                 </div>
