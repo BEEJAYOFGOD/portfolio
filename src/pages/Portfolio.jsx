@@ -18,6 +18,8 @@ import {
     Search,
     Shield,
     Layers,
+    ArrowLeft,
+    ArrowRightFromLineIcon,
 } from "lucide-react";
 import whatsappIcon from "../assets/icons/whatsapp.svg";
 import twitter from "../assets/icons/twitter.svg";
@@ -25,6 +27,7 @@ import linkedin from "../assets/icons/linkedin.svg";
 import github from "../assets/icons/github.svg";
 import myPic from "../assets/pic.PNG";
 import { useNavContext } from "../context/navContext";
+import ProjectsSection from "../components/ProjectSection";
 
 const Portfolio = () => {
     const { handleClick, setActive, Links, setSpin, click } = useNavContext();
@@ -42,50 +45,62 @@ const Portfolio = () => {
 
     useEffect(() => {
         const sections = document.querySelectorAll("[data-section]");
+        let timeoutId;
 
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach((entry) => {
-                    // setClick(false);
-                    if (entry.isIntersecting && !click) {
-                        const section =
-                            entry.target.getAttribute("data-section");
+                // Clear previous timeout
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
 
-                        if (!isMobile) {
-                            history.pushState(
-                                null,
-                                "",
-                                `${section == "home" ? "/" : `#${section}`}`
+                // Debounce the state updates
+                timeoutId = setTimeout(() => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting && !click) {
+                            const section =
+                                entry.target.getAttribute("data-section");
+
+                            if (!isMobile) {
+                                history.pushState(
+                                    null,
+                                    "",
+                                    `${section == "home" ? "/" : `#${section}`}`
+                                );
+                            }
+
+                            let sectionIndex = Array.from(Links).findIndex(
+                                (obj) => obj.name === section
                             );
+
+                            // Only update if the section actually changed
+                            setActive((prevActive) => {
+                                if (prevActive !== sectionIndex) {
+                                    console.log(sectionIndex);
+                                    setSpin(true);
+                                    setTimeout(() => setSpin(false), 500);
+                                    return sectionIndex;
+                                }
+                                return prevActive;
+                            });
                         }
-
-                        let sectionIndex = Array.from(Links).findIndex(
-                            (obj) => obj.name === section
-                        );
-
-                        setActive(sectionIndex);
-
-                        console.log(sectionIndex);
-
-                        setSpin(true);
-
-                        setTimeout(() => {
-                            setSpin(false);
-                        }, 500);
-                    }
-                });
+                    });
+                }, 100); // 100ms debounce
             },
             {
-                threshold: 0.7, // 50% of the section is visible
+                threshold: 0.7,
             }
         );
 
         sections.forEach((section) => observer.observe(section));
 
         return () => {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
             sections.forEach((section) => observer.unobserve(section));
         };
-    }, [click, isMobile]);
+    }, [click, isMobile, Links]);
 
     useEffect(() => {
         const roles = ["a Frontend Dev.", "Adekunle Bolaji", "a Web Developer"];
@@ -100,261 +115,6 @@ const Portfolio = () => {
         return () => clearInterval(interval); // Cleanup
     }, []);
 
-    // const services = [
-    //     {
-    //         icon: Palette,
-    //         title: "UI/UX Implementation",
-    //         description:
-    //             "Transforming your Figma designs into pixel-perfect, interactive React and Next.js applications. I specialize in converting static designs into dynamic, responsive components while maintaining design consistency and implementing smooth animations and micro-interactions that enhance user experience.",
-    //         gradient: "from-purple-50 to-purple-300",
-    //         iconBg: "bg-purple-500",
-    //     },
-    //     {
-    //         icon: Code2,
-    //         title: "React & Next.js Development",
-    //         description:
-    //             "Building scalable, production-ready web applications using modern React patterns and Next.js features. This includes server-side rendering, static site generation, API routes, and advanced optimization techniques to ensure your application loads fast, ranks well in search engines, and provides an exceptional user experience across all devices.",
-    //         gradient: "from-blue-50 to-blue-300",
-    //         iconBg: "bg-blue-600",
-    //     },
-    //     {
-    //         icon: Smartphone,
-    //         title: "Responsive Web Design",
-    //         description:
-    //             "Creating mobile-first, responsive designs that adapt seamlessly to any screen size or device. I ensure your application provides consistent functionality and visual appeal across desktop, tablet, and mobile platforms, with careful attention to touch interactions, loading performance, and accessibility standards for all users.",
-    //         gradient: "from-green-50 to-green-300",
-    //         iconBg: "bg-green-500",
-    //     },
-    //     {
-    //         icon: ShoppingCart,
-    //         title: "E-commerce Solutions",
-    //         description:
-    //             "Developing comprehensive e-commerce platforms with secure payment processing, inventory management, shopping cart functionality, and customer account systems. I integrate popular payment gateways like Stripe and PayPal, implement advanced filtering and search capabilities, and create admin dashboards for easy product and order management.",
-    //         gradient: "from-orange-50 to-orange-300",
-    //         iconBg: "bg-orange-500",
-    //     },
-    //     {
-    //         icon: BarChart3,
-    //         title: "Analytics & Dashboards",
-    //         description:
-    //             "Creating interactive data visualization dashboards that transform complex business data into actionable insights. Using libraries like Chart.js, D3.js, and Recharts, I build custom analytics interfaces that help you track KPIs, monitor user behavior, and make data-driven decisions with real-time updates and intuitive filtering options.",
-    //         gradient: "from-indigo-50 to-indigo-300",
-    //         iconBg: "bg-indigo-600",
-    //     },
-    //     {
-    //         icon: Rocket,
-    //         title: "MVP Development",
-    //         description:
-    //             "Rapid development of minimum viable products to validate your startup ideas quickly and cost-effectively. I focus on core functionality, clean user interfaces, and scalable architecture that allows for future growth. This includes user authentication, basic CRUD operations, and essential features needed to test your concept in the market.",
-    //         gradient: "from-pink-50 to-pink-300",
-    //         iconBg: "bg-pink-500",
-    //     },
-    //     {
-    //         icon: Globe,
-    //         title: "Landing Pages & Websites",
-    //         description:
-    //             "Designing and developing high-converting landing pages and corporate websites that establish your professional online presence. I focus on conversion optimization, fast loading times, SEO-friendly structure, and compelling call-to-actions that drive business results. Each page is crafted to tell your story and convert visitors into customers.",
-    //         gradient: "from-teal-50 to-teal-300",
-    //         iconBg: "bg-teal-600",
-    //     },
-    //     {
-    //         icon: Users,
-    //         title: "User Portal Development",
-    //         description:
-    //             "Building comprehensive user management systems including admin panels, customer portals, and role-based access control. I create intuitive interfaces for managing users, content, and business operations, with features like user profiles, permission systems, activity tracking, and customizable dashboards tailored to your specific business workflows.",
-    //         gradient: "from-red-50 to-red-300",
-    //         iconBg: "bg-red-500",
-    //     },
-    //     {
-    //         icon: Search,
-    //         title: "SEO & Performance",
-    //         description:
-    //             "Implementing comprehensive search engine optimization strategies and performance enhancements to maximize your online visibility and user experience. This includes technical SEO, Core Web Vitals optimization, lazy loading, code splitting, and advanced caching strategies that improve your search rankings and conversion rates.",
-    //         gradient: "from-yellow-50 to-yellow-300",
-    //         iconBg: "bg-yellow-500",
-    //     },
-    //     {
-    //         icon: Shield,
-    //         title: "Security & Authentication",
-    //         description:
-    //             "Implementing robust security measures including secure user authentication, authorization systems, data encryption, and compliance with industry standards like GDPR. I integrate authentication providers, implement JWT tokens, secure API calls, and ensure your application protects sensitive user data while maintaining a smooth user experience.",
-    //         gradient: "from-gray-50 to-gray-300",
-    //         iconBg: "bg-gray-600",
-    //     },
-    //     {
-    //         icon: Layers,
-    //         title: "API Integration",
-    //         description:
-    //             "Seamlessly connecting your frontend applications with backend services, third-party APIs, and existing business systems. I handle complex data fetching, state management, error handling, and real-time updates using modern techniques like React Query, SWR, and WebSockets to ensure your application stays synchronized and responsive.",
-    //         gradient: "from-violet-50 to-violet-300",
-    //         iconBg: "bg-violet-600",
-    //     },
-    //     {
-    //         icon: Zap,
-    //         title: "Progressive Web Apps",
-    //         description:
-    //             "Developing modern web applications that combine the best of web and native app experiences. PWAs work offline, load instantly, and can be installed on users' devices. I implement service workers, caching strategies, push notifications, and background sync to create app-like experiences that increase user engagement and retention.",
-    //         gradient: "from-cyan-50 to-cyan-300",
-    //         iconBg: "bg-cyan-500",
-    //     },
-    // ];
-
-    // Services data object
-    // const services = [
-    //     {
-    //         id: 1,
-    //         title: "UI/UX Design",
-    //         description:
-    //             "Creating beautiful, intuitive user interfaces with modern design principles",
-    //         icon: "Palette",
-    //         bgGradient: "bg-gradient-to-b from-blue-50 to-blue-300",
-    //         iconBg: "bg-blue-500",
-    //     },
-    //     {
-    //         id: 2,
-    //         title: "Frontend Development",
-    //         description:
-    //             "Building responsive, interactive web applications using React and modern frameworks",
-    //         icon: "Code2",
-    //         bgGradient: "bg-gradient-to-tr from-blue-50 to-blue-300",
-    //         iconBg: "bg-blue-600",
-    //     },
-    //     {
-    //         id: 3,
-    //         title: "Mobile-First Design",
-    //         description:
-    //             "Ensuring your website looks perfect on all devices and screen sizes",
-    //         icon: "Smartphone",
-    //         bgGradient: "bg-gradient-to-b from-blue-50 to-blue-300",
-    //         iconBg: "bg-blue-700",
-    //     },
-    //     {
-    //         id: 4,
-    //         title: "Performance Optimization",
-    //         description:
-    //             "Fast-loading websites optimized for the best user experience",
-    //         icon: "Zap",
-    //         bgGradient: "bg-gradient-to-b from-blue-50 to-blue-300",
-    //         iconBg: "bg-blue-500",
-    //     },
-    //     {
-    //         id: 5,
-    //         title: "API Integration",
-    //         description:
-    //             "Seamless integration with third-party services and databases",
-    //         icon: "Link",
-    //         bgGradient: "bg-gradient-to-tl from-blue-50 to-blue-300",
-    //         iconBg: "bg-blue-600",
-    //     },
-    // ];
-
-    // Icon mapping (assuming you're using lucide-react)
-
-    // const services = [
-    //     {
-    //         icon: Palette,
-    //         title: "UI/UX Implementation",
-    //         description:
-    //             "Transforming your Figma designs into pixel-perfect, interactive React and Next.js applications. I specialize in converting static designs into dynamic, responsive components while maintaining design consistency and implementing smooth animations and micro-interactions that enhance user experience.",
-    //         gradient: "from-purple-50 to-purple-300",
-    //         iconBg: "bg-purple-500",
-    //     },
-    //     {
-    //         icon: Code2,
-    //         title: "React & Next.js Development",
-    //         description:
-    //             "Building scalable, production-ready web applications using modern React patterns and Next.js features...",
-    //         gradient: "from-blue-50 to-blue-300",
-    //         iconBg: "bg-blue-600",
-    //     },
-    //     {
-    //         icon: Smartphone,
-    //         title: "Responsive Web Design",
-    //         description:
-    //             "Creating mobile-first, responsive designs that adapt seamlessly to any screen size or device...",
-    //         gradient: "from-green-50 to-green-300",
-    //         iconBg: "bg-green-500",
-    //     },
-    //     {
-    //         icon: ShoppingCart,
-    //         title: "E-commerce Solutions",
-    //         description:
-    //             "Developing comprehensive e-commerce platforms with secure payment processing, inventory management...",
-    //         gradient: "from-orange-50 to-orange-300",
-    //         iconBg: "bg-orange-500",
-    //     },
-    //     {
-    //         icon: BarChart3,
-    //         title: "Analytics & Dashboards",
-    //         description:
-    //             "Creating interactive data visualization dashboards that transform complex business data into actionable insights...",
-    //         gradient: "from-indigo-50 to-indigo-300",
-    //         iconBg: "bg-indigo-600",
-    //     },
-    //     {
-    //         icon: Rocket,
-    //         title: "MVP Development",
-    //         description:
-    //             "Rapid development of minimum viable products to validate your startup ideas quickly and cost-effectively...",
-    //         gradient: "from-pink-50 to-pink-300",
-    //         iconBg: "bg-pink-500",
-    //     },
-    //     {
-    //         icon: Globe,
-    //         title: "Landing Pages & Websites",
-    //         description:
-    //             "Designing and developing high-converting landing pages and corporate websites...",
-    //         gradient: "from-teal-50 to-teal-300",
-    //         iconBg: "bg-teal-600",
-    //     },
-    //     {
-    //         icon: Users,
-    //         title: "User Portal Development",
-    //         description:
-    //             "Building comprehensive user management systems including admin panels, customer portals...",
-    //         gradient: "from-red-50 to-red-300",
-    //         iconBg: "bg-red-500",
-    //     },
-    //     {
-    //         icon: Search,
-    //         title: "SEO & Performance",
-    //         description:
-    //             "Implementing comprehensive search engine optimization strategies and performance enhancements...",
-    //         gradient: "from-yellow-50 to-yellow-300",
-    //         iconBg: "bg-yellow-500",
-    //     },
-    //     {
-    //         icon: Shield,
-    //         title: "Security & Authentication",
-    //         description:
-    //             "Implementing robust security measures including secure user authentication...",
-    //         gradient: "from-gray-50 to-gray-300",
-    //         iconBg: "bg-gray-600",
-    //     },
-    //     {
-    //         icon: Layers,
-    //         title: "API Integration",
-    //         description:
-    //             "Seamlessly connecting your frontend applications with backend services, third-party APIs...",
-    //         gradient: "from-violet-50 to-violet-300",
-    //         iconBg: "bg-violet-600",
-    //     },
-    //     {
-    //         icon: Zap,
-    //         title: "Progressive Web Apps",
-    //         description:
-    //             "Developing modern web applications that combine the best of web and native app experiences...",
-    //         gradient: "from-cyan-50 to-cyan-300",
-    //         iconBg: "bg-cyan-500",
-    //     },
-    // ];
-    // const iconComponents = {
-    //     Palette,
-    //     Code2,
-    //     Smartphone,
-    //     Zap,
-    //     Link,
-    // };
     const services = [
         {
             icon: Palette,
@@ -380,14 +140,7 @@ const Portfolio = () => {
             gradient: "from-green-50 to-green-300",
             iconBg: "bg-green-500",
         },
-        // {
-        //     icon: ShoppingCart,
-        //     title: "E-commerce Solutions",
-        //     description:
-        //         "Developing comprehensive e-commerce platforms with secure payment processing, inventory management, shopping cart functionality, and customer account systems. I integrate popular payment gateways like Stripe and PayPal, implement advanced filtering and search capabilities, and create admin dashboards for easy product and order management.",
-        //     gradient: "from-orange-50 to-orange-300",
-        //     iconBg: "bg-orange-500",
-        // },
+
         {
             icon: BarChart3,
             title: "Analytics & Dashboards",
@@ -412,14 +165,7 @@ const Portfolio = () => {
             gradient: "from-teal-50 to-teal-300",
             iconBg: "bg-teal-600",
         },
-        // {
-        //     icon: Users,
-        //     title: "User Portal Development",
-        //     description:
-        //         "Building comprehensive user management systems including admin panels, customer portals, and role-based access control. I create intuitive interfaces for managing users, content, and business operations, with features like user profiles, permission systems, activity tracking, and customizable dashboards tailored to your specific business workflows.",
-        //     gradient: "from-red-50 to-red-300",
-        //     iconBg: "bg-red-500",
-        // },
+
         {
             icon: Search,
             title: "SEO & Performance",
@@ -596,40 +342,20 @@ const Portfolio = () => {
                         })}
                     </div>
                 </section>
+
                 <div
                     id="projects"
-                    className="px-6 md:px-0"
+                    className="px-6 md:px-40"
                     data-section="projects"
                 >
-                    <h1 className="text-4xl font-bold mb-4">Portfolio1</h1>
-                    <p>
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. v
-                    </p>
+                    <h1 className="text-4xl text-center mt-24 font-bold mb-4">
+                        Featured Projects
+                    </h1>
+
+                    {/* list of projects */}
+                    <ProjectsSection />
                 </div>
+
                 <div
                     id="contact"
                     className="px-6 md:px-0"

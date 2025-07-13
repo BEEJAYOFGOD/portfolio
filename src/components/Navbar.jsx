@@ -46,11 +46,14 @@ const Navbar = () => {
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY;
-            setIsScrolled(scrollTop > 50); // Change threshold as needed
+            setIsScrolled(scrollTop > 250); // Change threshold as needed
         };
 
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        return () =>
+            window.removeEventListener("scroll", () => {
+                handleScroll();
+            });
     }, []);
 
     return (
@@ -61,7 +64,7 @@ const Navbar = () => {
           transition-all duration-150 ease-in-out px-8 md:px-8 md:py-2  py-4
           ${
               isScrolled
-                  ? "fixed top-0 left-0 right-0 md:sticky md:top-5 md:w-[68%] mx-auto md:rounded-4xl md:px-8"
+                  ? "fixed top-0 left-0 right-0 md:sticky md:top-5 md:w-[68%] mx-auto md:rounded-xl md:px-8"
                   : "fixed md:top-0 md:w-full md:mx-auto "
           }
         `}

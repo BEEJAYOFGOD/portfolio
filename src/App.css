@@ -43,8 +43,7 @@
 }
 
 .jump {
-    animation: jump 0.5s ease-in-out;
-    animation-iteration-count: once;
+    @apply animate-bounce;
 }
 
 @keyframes jump {
@@ -56,13 +55,26 @@
     }
 }
 
-.animate-spin {
-    @apply animate-spin;
-}
-
 /* Add to your global CSS */
 * {
     cursor: inherit;
+}
+@theme {
+    --animate-move-in: move-in 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+
+    @keyframes move-in {
+        0% {
+            opacity: 0;
+            transform: translateX(-28px);
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
 }
 
 button,
@@ -110,4 +122,47 @@ a {
 
 .service {
     will-change: transform;
+}
+
+.project-card {
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+}
+
+.project-hover-button {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    transform: translateY(10px);
+}
+
+.project-card:hover .project-hover-button {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    animation: move-in 4s ease-in-out;
+}
+
+@keyframes move-in {
+    0% {
+        opacity: 0;
+        transform: translateX(-28px);
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+.project-image {
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
 }
