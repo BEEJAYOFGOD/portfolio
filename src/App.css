@@ -123,7 +123,7 @@ a {
 .service {
     will-change: transform;
 }
-
+/*
 .project-card {
     transition: transform 0.3s ease;
 }
@@ -144,7 +144,7 @@ a {
     visibility: visible;
     transform: translateY(0);
     animation: move-in 4s ease-in-out;
-}
+} */
 
 @keyframes move-in {
     0% {
@@ -159,10 +159,20 @@ a {
         transform: translateX(0px);
     }
 }
-.project-image {
+/* .project-image {
     transition: transform 0.3s ease;
 }
 
 .project-card:hover .project-image {
     transform: scale(1.05);
+} */
+
+#projectContain {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
 }
+
+/* #projectContain > article:last-child {
+    margin-bottom: 0;
+} */

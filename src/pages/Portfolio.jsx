@@ -20,6 +20,7 @@ import {
     Layers,
     ArrowLeft,
     ArrowRightFromLineIcon,
+    ArrowRight,
 } from "lucide-react";
 import whatsappIcon from "../assets/icons/whatsapp.svg";
 import twitter from "../assets/icons/twitter.svg";
@@ -45,62 +46,52 @@ const Portfolio = () => {
 
     useEffect(() => {
         const sections = document.querySelectorAll("[data-section]");
-        let timeoutId;
 
         const observer = new IntersectionObserver(
             (entries) => {
-                // Clear previous timeout
-                if (timeoutId) {
-                    clearTimeout(timeoutId);
-                }
+                entries.forEach((entry) => {
+                    // setClick(false);
+                    if (entry.isIntersecting && !click) {
+                        const section =
+                            entry.target.getAttribute("data-section");
 
-                // Debounce the state updates
-                timeoutId = setTimeout(() => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting && !click) {
-                            const section =
-                                entry.target.getAttribute("data-section");
-
-                            if (!isMobile) {
-                                history.pushState(
-                                    null,
-                                    "",
-                                    `${section == "home" ? "/" : `#${section}`}`
-                                );
-                            }
-
-                            let sectionIndex = Array.from(Links).findIndex(
-                                (obj) => obj.name === section
+                        if (!isMobile) {
+                            history.pushState(
+                                null,
+                                "",
+                                `${section == "home" ? "/" : `#${section}`}`
                             );
-
-                            // Only update if the section actually changed
-                            setActive((prevActive) => {
-                                if (prevActive !== sectionIndex) {
-                                    console.log(sectionIndex);
-                                    setSpin(true);
-                                    setTimeout(() => setSpin(false), 500);
-                                    return sectionIndex;
-                                }
-                                return prevActive;
-                            });
                         }
-                    });
-                }, 100); // 100ms debounce
+
+                        let sectionIndex = Array.from(Links).findIndex(
+                            (obj) => obj.name === section
+                        );
+
+                        setActive(sectionIndex);
+
+                        console.log(sectionIndex);
+
+                        setSpin(true);
+
+                        setTimeout(() => {
+                            setSpin(false);
+                        }, 500);
+                    }
+                });
             },
             {
-                threshold: 0.7,
+                root: null, // or your specific root element
+                rootMargin: "0px 0px -30px 0px", // adjust margins to account for gap
+                threshold: 0.3, // or adjust threshold
             }
         );
 
         sections.forEach((section) => observer.observe(section));
 
         return () => {
-            if (timeoutId) {
-                clearTimeout(timeoutId);
-            }
             sections.forEach((section) => observer.unobserve(section));
         };
-    }, [click, isMobile, Links]);
+    }, [click, isMobile]);
 
     useEffect(() => {
         const roles = ["a Frontend Dev.", "Adekunle Bolaji", "a Web Developer"];
@@ -352,7 +343,6 @@ const Portfolio = () => {
                         Featured Projects
                     </h1>
 
-                    {/* list of projects */}
                     <ProjectsSection />
                 </div>
 

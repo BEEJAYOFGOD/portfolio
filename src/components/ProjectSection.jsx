@@ -1,8 +1,20 @@
-import ProjectCard from "../components/Project.component";
+"../components/Project.component";
+import ProjectCard from "./Project.component";
 
 const ProjectsSection = () => {
     // Projects data object
     const projectsData = [
+        {
+            id: 1,
+            name: "Raft Fintech",
+            description:
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, ea! Sit laboriosam totam tempora culpa consequatur assumenda odio nisi voluptatum cum adipisci placeat eaque, vero sapiente voluptatibus harum sed ipsum.",
+            builtBy: "Adekunle Bolaji",
+            technologies: ["HTML", "CSS", "JS"],
+            imageColor: "bg-red-500",
+            projectUrl: "#",
+            link: "https://raft-fintech.vercel.app/",
+        },
         {
             id: 2,
             name: "TaskFlow",
@@ -12,6 +24,7 @@ const ProjectsSection = () => {
             technologies: ["React", "Firebase", "Tailwind"],
             imageColor: "bg-blue-500",
             projectUrl: "#",
+            link: "https://raft-fintech.vercel.app/",
         },
         {
             id: 3,
@@ -22,6 +35,7 @@ const ProjectsSection = () => {
             technologies: ["Vue.js", "Node.js", "Chart.js"],
             imageColor: "bg-green-500",
             projectUrl: "#",
+            link: "https://raft-fintech.vercel.app/",
         },
         {
             id: 4,
@@ -32,6 +46,7 @@ const ProjectsSection = () => {
             technologies: ["Next.js", "TypeScript", "PostgreSQL"],
             imageColor: "bg-purple-500",
             projectUrl: "#",
+            link: "https://raft-fintech.vercel.app/",
         },
         {
             id: 5,
@@ -42,6 +57,18 @@ const ProjectsSection = () => {
             technologies: ["ESP32", "React", "MQTT"],
             imageColor: "bg-yellow-500",
             projectUrl: "#",
+            link: "https://raft-fintech.vercel.app/",
+        },
+        {
+            id: 6,
+            name: "BlogCMS",
+            description:
+                "Full-featured content management system for bloggers and content creators. Features markdown support, SEO optimization, and customizable themes with lightning-fast performance.",
+            builtBy: "Adekunle Bolaji",
+            technologies: ["Gatsby", "GraphQL", "Strapi"],
+            imageColor: "bg-pink-500",
+            projectUrl: "#",
+            link: "https://raft-fintech.vercel.app/",
         },
     ];
 
