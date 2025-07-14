@@ -73,10 +73,14 @@ const ProjectsSection = () => {
     ];
 
     return (
-        <section className="w-full mx-auto p-6">
-            <h2 className="text-4xl font-bold text-center mb-12">
-                My Projects
-            </h2>
+        <section
+            id="projects"
+            className="px-6  w-5xl mx-auto"
+            data-section="projects"
+        >
+            <h1 className="text-4xl text-center mt-24 font-bold mb-4">
+                Featured Projects
+            </h1>
             <div className="flex flex-col gap-12">
                 {projectsData.map((project) => (
                     <ProjectCard key={project.id} project={project} />

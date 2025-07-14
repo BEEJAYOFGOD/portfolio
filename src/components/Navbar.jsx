@@ -9,7 +9,6 @@ const Navbar = () => {
     const { handleClick, active, spin, Links } = useNavContext();
     const [openNav, setOpenNav] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-    const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -61,12 +60,8 @@ const Navbar = () => {
             <header
                 className={`
           flex justify-between items-center  bg-white/90 backdrop-blur-md border border-gray-200 shadow-sm z-50 w-full
-          transition-all duration-150 ease-in-out px-8 md:px-8 md:py-2  py-4
-          ${
-              isScrolled
-                  ? "fixed top-0 left-0 right-0 md:sticky md:top-5 md:w-[68%] mx-auto md:rounded-xl md:px-8"
-                  : "fixed md:top-0 md:w-full md:mx-auto "
-          }
+          transition-all duration-150 ease-in-out px-8 md:px-8 md:py-2  py-4 md:sticky top-0
+
         `}
             >
                 <Link

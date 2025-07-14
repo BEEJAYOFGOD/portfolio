@@ -334,17 +334,7 @@ const Portfolio = () => {
                     </div>
                 </section>
 
-                <div
-                    id="projects"
-                    className="px-6 md:px-40"
-                    data-section="projects"
-                >
-                    <h1 className="text-4xl text-center mt-24 font-bold mb-4">
-                        Featured Projects
-                    </h1>
-
-                    <ProjectsSection />
-                </div>
+                <ProjectsSection />
 
                 <div
                     id="contact"
