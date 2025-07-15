@@ -60,7 +60,7 @@ const Navbar = () => {
             <header
                 className={`
           flex justify-between items-center  bg-white/90 backdrop-blur-md border border-gray-200 shadow-sm z-50 w-full
-          transition-all duration-150 ease-in-out px-8 md:px-8 md:py-2  py-4 md:sticky top-0
+          transition-all duration-150 ease-in-out px-8 md:px-8 md:py-2  py-4 md:fixed fixed top-0
 
         `}
             >

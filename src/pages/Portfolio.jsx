@@ -28,7 +28,7 @@ import linkedin from "../assets/icons/linkedin.svg";
 import github from "../assets/icons/github.svg";
 import myPic from "../assets/pic.PNG";
 import { useNavContext } from "../context/navContext";
-import ProjectsSection from "../components/ProjectSection";
+import ProjectsSection from "../section/ProjectSection";
 
 const Portfolio = () => {
     const { handleClick, setActive, Links, setSpin, click } = useNavContext();
@@ -182,7 +182,7 @@ const Portfolio = () => {
 
             <div className="md:w-[1000px] mx-auto  max-w-screen overflow-hidden">
                 <section
-                    className="relative flex  items-center justify-center flex-col min-h-screen md:py-0"
+                    className="relative flex  items-center justify-center flex-col min-h-screen md:py-0 "
                     id="home"
                     data-section="home"
                 >
@@ -266,7 +266,7 @@ const Portfolio = () => {
                             </p>
                         </div>
 
-                        <p className="md:mt-8 mt-4 md:w-md text-left opacity-60">
+                        <p className="md:mt-8 mt-4 md:w-2xl text-left opacity-60">
                             I'm a Computer Engineering student and frontend
                             developer with a knack for solving problems and
                             building clean, responsive websites for brands,
@@ -345,51 +345,6 @@ const Portfolio = () => {
                         Portfolio
                     </h1>
                     <p>
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
-                        perspiciatis eveniet velit sed eius corrupti maiores aut
-                        id alias neque, possimus tenetur dignissimos nam
-                        perferendis tempora nemo numquam harum magnam! Lorem
-                        ipsum, dolor sit amet consectetur adipisicing elit.
-                        Rerum ad officia illo fuga. Corporis repellat esse natus
-                        rerum consequatur accusamus perferendis illo, quaerat
-                        accusantium impedit nostrum, fugit eos alias
-                        voluptatibus. Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Expedita maiores explicabo aut
-                        mollitia, maxime error reprehenderit totam tempora
-                        laboriosam, quae sunt? Beatae inventore, laudantium
-                        autem deserunt ipsam earum rerum laboriosam! Lorem ipsum
-                        dolor sit amet consectetur, adipisicing elit. Officiis
                         perspiciatis eveniet velit sed eius corrupti maiores aut
                         id alias neque, possimus tenetur dignissimos nam
                         perferendis tempora nemo numquam harum magnam! Lorem
