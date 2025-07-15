@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 const ProjectCard = ({ project }) => {
     return (
-        <article className="flex [&>*]:flex-1 md:flex-row flex-col border border-slate-200/60 bg-white p-6 gap-8 rounded-3xl group transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-200/50">
+        <article className="flex [&>*]:flex-1 md:flex-row flex-col border border-slate-200/60 bg-white md:p-6 p-3  gap-8 rounded-3xl group transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-200/50">
             <div className="space-y-3">
                 <div className="flex flex-col gap-3">
                     <p className="text-2xl font-bold text-slate-800 mb-1">
@@ -13,7 +13,7 @@ const ProjectCard = ({ project }) => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="opacity-0  md:invisible bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all py-2.5 duration-500 flex md:group-hover:visible group-hover:opacity-100 group/link items-center border-0 w-fit px-5 rounded-2xl group-hover:animate-move-in shadow-lg hover:shadow-blue-500/25"
+                        className="md:opacity-0  md:invisible bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all py-2.5 duration-500 flex md:group-hover:visible group-hover:opacity-100 group/link items-center border-0 w-fit px-5 rounded-2xl group-hover:animate-move-in shadow-lg hover:shadow-blue-500/25"
                     >
                         View Project
                         <span className="ml-2 transition-transform group-hover/link:translate-x-2 group-hover/link:ease-in-out">
@@ -39,7 +39,7 @@ const ProjectCard = ({ project }) => {
                 </div>
             </div>
 
-            <div className="rounded-3xl min-h-80 aspect-[12.0] box-border p-3 bg-gradient-to-br from-blue-50 via-indigo-200 to-purple-50 relative overflow-hidden">
+            <div className="rounded-3xl min-h-80 md:aspect-[12.0] aspect-video box-border p-3 bg-gradient-to-br from-blue-50 via-indigo-200 to-purple-50 relative overflow-hidden">
                 {/* Decorative background elements */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-purple-500/10"></div>
                 <div className="absolute top-4 right-4 w-20 h-20 bg-blue-400/20 rounded-full blur-xl"></div>
