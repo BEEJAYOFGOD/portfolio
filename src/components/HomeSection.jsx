@@ -12,7 +12,7 @@ const HomeSection = () => {
             "a Frontend Dev.",
             "Adekunle Bolaji",
             "a Web Developer",
-            "a SW. Engineer",
+            "a Software Eng.",
         ];
         let currentIndex = 0;
 
