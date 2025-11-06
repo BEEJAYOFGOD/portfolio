@@ -43,15 +43,15 @@ const MobileNav = () => {
                         Beejayofgod
                     </NavLink>
 
-                    <nav className="flex flex-col gap-4 items-start pl-4">
+                    <nav className="flex flex-col gap-6 items-start ">
                         {Links.map((link, index) => (
                             <NavLink
                                 key={link.id || index}
                                 to={link.path}
                                 onClick={() => handleNavClick(index)}
-                                className={`text-base font-medium transition-all duration-200 relative py-2 ${
+                                className={`text-base font-medium transition-all capitalize duration-200 relative py-2 ${
                                     active === index
-                                        ? "text-blue-600 font-semibold after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] after:bg-blue-600 after:rounded-full"
+                                        ? "text-blue-600 font-semibold after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-[2px] uppercase after:bg-blue-600 after:rounded-full"
                                         : "text-gray-700 hover:text-blue-600"
                                 }`}
                             >
