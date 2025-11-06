@@ -4,7 +4,7 @@ import git_icon2 from "../assets/icons/icon-git.gif";
 
 const ProjectCard = ({ project }) => {
     return (
-        <article className="container flex [&>*]:flex-1 md:flex-row flex-col border border-slate-200/60 bg-white md:p-6 p-3  gap-8 rounded-3xl group transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-200/50">
+        <article className="container flex [&>*]:flex-1 md:flex-row flex-col md:border border-2 border-slate-200/60 bg-white md:p-6 p-3  gap-8 rounded-3xl group transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-200/50">
             <div className="space-y-3">
                 <div className="flex flex-col gap-3">
                     <p className="text-2xl font-bold text-slate-800 mb-1">
