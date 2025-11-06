@@ -26,9 +26,15 @@ const ProjectCard = ({ project }) => {
                 <p className="leading-relaxed md:text-left text-justify text-slate-600">
                     {project.description}
                 </p>
-                <p className="text-sm text-blue-600 font-medium">
-                    Built by {project.builtBy}
-                </p>
+
+                <div className="flex items-center gap-3">
+                    <p className="text-sm text-blue-600 font-medium ">
+                        Built by {project.builtBy}
+                    </p>
+                    <a href="www.github.com" title="check github repo">
+                        <img src={git_icon2} className="w-10" alt="" />
+                    </a>
+                </div>
 
                 <div className="space-x-3 flex flex-wrap items-center gap-y-2 mt-8">
                     {project.technologies.map((tech, index) => (
@@ -39,14 +45,10 @@ const ProjectCard = ({ project }) => {
                             {tech}
                         </span>
                     ))}
-
-                    <a href="www.github.com" title="check github repo">
-                        <img src={git_icon2} className="w-12" alt="" />
-                    </a>
                 </div>
             </div>
 
-            <div className="rounded-3xl min-h-80 md:aspect-[12.0] aspect-video box-border p-3 bg-gradient-to-br from-blue-50 via-indigo-200 to-purple-50 relative overflow-hidden">
+            <div className="rounded-3xl md:min-h-80 min-h-70 md:aspect-[12.0] aspect-video box-border p-3 bg-gradient-to-br from-blue-50 via-indigo-200 to-purple-50 relative overflow-hidden">
                 {/* Decorative background elements */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-indigo-500/10 to-purple-500/10"></div>
                 <div className="absolute top-4 right-4 w-20 h-20 bg-blue-400/20 rounded-full blur-xl"></div>
