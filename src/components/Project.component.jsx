@@ -23,7 +23,7 @@ const ProjectCard = ({ project }) => {
                         </span>
                     </a>
                 </div>
-                <p className="leading-relaxed text-slate-600">
+                <p className="leading-relaxed md:text-left text-justify text-slate-600">
                     {project.description}
                 </p>
                 <p className="text-sm text-blue-600 font-medium">
@@ -34,7 +34,7 @@ const ProjectCard = ({ project }) => {
                     {project.technologies.map((tech, index) => (
                         <span
                             key={index}
-                            className="border border-slate-200 bg-slate-50 px-4 py-2 text-slate-700 rounded-xl text-sm hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:border-blue-200 hover:text-blue-700 transition-all duration-200"
+                            className="border border-slate-200 bg-slate-50 md:px-4 md:py-2 py-1 px-2 text-slate-700 rounded-xl md:text-sm text-xshover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:border-blue-200 hover:text-blue-700 transition-all duration-200"
                         >
                             {tech}
                         </span>
