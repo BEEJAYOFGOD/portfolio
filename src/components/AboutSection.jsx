@@ -1,0 +1,59 @@
+import { FileText, Phone } from "lucide-react";
+import myPic from "../assets/pic.PNG";
+
+const AboutSection = () => {
+    return (
+        <section
+            // onClick={() => handleClick(1, Links)}
+            id="about"
+            data-section="about"
+            className="flex md:flex-row flex-col gap-12 h-[calc(100dvh-5rem)] items-center   max-w-5xl mx-auto "
+        >
+            <div className="br">
+                <img
+                    className="w-sm mx-auto h-full hidden md:flex"
+                    src={myPic}
+                    alt="Adekunle Bolaji"
+                />
+            </div>
+            <div className="md:w-2xl my-auto px-6">
+                <h2 className="text-blue-500 w-xs pb-2 md:text-5xl text-3xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-1  md:after:w-4/5 after:w-1/2 after:bg-blue-500">
+                    ABOUT ME
+                </h2>
+                <div className="flex md:flex-row items-start flex-col justify-start gap-4">
+                    <p className="font-bold mt-4 text-gray-700">
+                        ADEKUNLE BOLAJI - DEVELOPER
+                    </p>
+                </div>
+
+                <p className="md:mt-8 mt-4 md:w-2xl text-left opacity-60 text-lg">
+                    I'm a Computer Engineering student and frontend developer
+                    with a knack for solving problems and building clean,
+                    responsive websites for brands, businesses, and startups.
+                    <br /> <br /> My coding journey kicked off when I took a
+                    Python course in school and realized I enjoyed telling
+                    computers what to do (and having them actually listen). When
+                    I'm not writing code or refining user interfaces, you'll
+                    probably catch me unwinding with a heated round of
+                    eFootball—my way of debugging life.
+                </p>
+
+                <div className="flex mt-8 flex-col md:flex-row items-left gap-4">
+                    <a className="flex items-center justify-center gap-4 md:text-base px-4 md:py-3 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <FileText size={20} />
+                        View Resume
+                    </a>
+                    <a
+                        href=""
+                        className="flex items-center justify-center md:text-base gap-4 border-blue-500 border px-4 py-4 md:py-3 rounded-md text-blue-600"
+                    >
+                        <Phone className="animate-bounce" />
+                        Book a call with me
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default AboutSection;

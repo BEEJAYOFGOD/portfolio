@@ -1,8 +1,9 @@
 import { ArrowRight } from "lucide-react";
+import git_icon from "../assets/icons/git2.svg";
 
 const ProjectCard = ({ project }) => {
     return (
-        <article className="flex [&>*]:flex-1 md:flex-row flex-col border border-slate-200/60 bg-white md:p-6 p-3  gap-8 rounded-3xl group transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-200/50">
+        <article className="container flex [&>*]:flex-1 md:flex-row flex-col border border-slate-200/60 bg-white md:p-6 p-3  gap-8 rounded-3xl group transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-200/50">
             <div className="space-y-3">
                 <div className="flex flex-col gap-3">
                     <p className="text-2xl font-bold text-slate-800 mb-1">
@@ -15,7 +16,7 @@ const ProjectCard = ({ project }) => {
                         rel="noopener noreferrer"
                         className="md:opacity-0  md:invisible bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white transition-all py-2.5 duration-500 flex md:group-hover:visible group-hover:opacity-100 group/link items-center border-0 w-fit px-5 rounded-2xl group-hover:animate-move-in shadow-lg hover:shadow-blue-500/25"
                     >
-                        View Project
+                        <span>View Project</span>
                         <span className="ml-2 transition-transform group-hover/link:translate-x-2 group-hover/link:ease-in-out">
                             <ArrowRight size={16} />
                         </span>
@@ -27,7 +28,8 @@ const ProjectCard = ({ project }) => {
                 <p className="text-sm text-blue-600 font-medium">
                     Built by {project.builtBy}
                 </p>
-                <div className="space-x-3 flex flex-wrap gap-y-2 mt-8">
+
+                <div className="space-x-3 flex flex-wrap items-center gap-y-2 mt-8">
                     {project.technologies.map((tech, index) => (
                         <span
                             key={index}
@@ -36,6 +38,10 @@ const ProjectCard = ({ project }) => {
                             {tech}
                         </span>
                     ))}
+
+                    <a href="www.github.com" title="check github repo">
+                        <img src={git_icon} className="w-12" alt="" />
+                    </a>
                 </div>
             </div>
 
