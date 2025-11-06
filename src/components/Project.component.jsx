@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
-import git_icon from "../assets/icons/git2.svg";
+// import git_icon from "../assets/icons/git2.svg";
+import git_icon2 from "../assets/icons/icon-git.gif";
 
 const ProjectCard = ({ project }) => {
     return (
@@ -40,7 +41,7 @@ const ProjectCard = ({ project }) => {
                     ))}
 
                     <a href="www.github.com" title="check github repo">
-                        <img src={git_icon} className="w-12" alt="" />
+                        <img src={git_icon2} className="w-12" alt="" />
                     </a>
                 </div>
             </div>

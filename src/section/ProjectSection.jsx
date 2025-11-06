@@ -60,9 +60,11 @@ const ProjectsSection = () => {
             className="md:px-6 px-3  md:w-5xl mx-auto "
             data-section="projects"
         >
-            <h1 className="text-4xl text-center mt-24 font-bold mb-4 text-blue-500">
+            <h2
+                className={`md:text-5xl w-fit text-3xl font-bold md:my-8 md:mt-20 ml-4  md:mx-auto md:text-center pb-2 relative tracking-wide text-blue-500 after:absolute after:bottom-0 after:left-0 after:content-[''] after:h-1 after:w-full hover:after:w-full after:duration-500 transition-all after:transition-all after:bg-blue-500 mt-12 mb-4`}
+            >
                 Featured Projects
-            </h1>
+            </h2>
             <div className="flex flex-col gap-12">
                 {projectsData.map((project) => (
                     <ProjectCard key={project.id} project={project} />

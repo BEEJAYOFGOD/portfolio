@@ -45,7 +45,7 @@ const HomeSection = () => {
             </span>
 
             <p className="max-w-xl text-center mt-4 md:w-xl w-sm text-lg">
-                I turn complex ideas into elegant websites and web apps.
+                I turn complex ideas into elegant websites and web applications.
                 Specializing in React, JavaScript and TypeScript, I create
                 seamless, responsive interfaces that deliver exceptional user
                 experience through clean code.
@@ -56,7 +56,7 @@ const HomeSection = () => {
                     href="https://wa.me/2348130639734"
                     className=" transition  group  "
                 >
-                    <div className=" group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80">
+                    <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80 hover:ease-in hover:duration-[1s]">
                         <img className="w-8 m-auto" src={whatsappIcon} alt="" />
                     </div>
                 </a>
@@ -65,7 +65,7 @@ const HomeSection = () => {
                     href="https://www.x.com/beejayofgod"
                     className=" transition  group  "
                 >
-                    <div className=" group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80">
+                    <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80 hover:ease-in hover:duration-[1s]">
                         <img className="w-8 m-auto" src={twitter} alt="" />
                     </div>
                 </a>
@@ -74,7 +74,7 @@ const HomeSection = () => {
                     href="https://www.github.com/beejayofgod"
                     className=" transition  group  "
                 >
-                    <div className=" group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80">
+                    <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80 hover:ease-in hover:duration-[1s]">
                         <img
                             className="w-8 m-auto"
                             src={github}
@@ -86,7 +86,7 @@ const HomeSection = () => {
                     href="https://www.x.com/beejayofgod"
                     className=" transition  group  "
                 >
-                    <div className=" group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80">
+                    <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80 hover:ease-in hover:duration-[1s]">
                         <img
                             className="w-8 m-auto"
                             src={linkedin}

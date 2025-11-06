@@ -1,5 +1,6 @@
 // AppContext.js
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 // 1. Create the context
 // eslint-disable-next-line react-refresh/only-export-components
@@ -15,15 +16,19 @@ export const NavProvider = ({ children }) => {
     const [active, setActive] = useState(0);
     const [spin, setSpin] = useState(false);
     const [click, setClick] = useState(false);
+    const navigate = useNavigate();
 
-    const Links = [
-        { name: "home", path: "/" },
-        { name: "about", path: "#about" },
-        { name: "services", path: "#services" },
+    const Links = useMemo(
+        () => [
+            { name: "home", path: "/" },
+            { name: "about", path: "#about" },
+            { name: "services", path: "#services" },
 
-        { name: "projects", path: "#projects" },
-        { name: "contact", path: "#contact" },
-    ];
+            { name: "projects", path: "#projects" },
+            { name: "contact", path: "#contact" },
+        ],
+        []
+    );
 
     const handleClick = (index) => {
         setClick(true);
@@ -32,8 +37,13 @@ export const NavProvider = ({ children }) => {
         setSpin(true);
 
         const section = document.getElementById(
-            Links ? Links[index]?.name : "home"
+            Links ? Links[index]?.name : ""
         );
+
+        Links[index]?.name == "home"
+            ? navigate("/")
+            : navigate(`/${Links[index]?.path}`);
+
         // console.log(links);
         console.log(section);
         section?.scrollIntoView({ behavior: "smooth" });
@@ -41,8 +51,50 @@ export const NavProvider = ({ children }) => {
         setTimeout(() => {
             setSpin(false);
             setClick(false);
-        }, 500); // Reset spin after 3 seconds
+        }, 900); // Reset spin after 3 seconds
     };
+
+    useEffect(() => {
+        const sections = document.querySelectorAll("[data-section]");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    // setClick(!click);
+                    if (entry.isIntersecting && !click) {
+                        const section =
+                            entry.target.getAttribute("data-section");
+
+                        let sectionIndex = Array.from(Links).findIndex(
+                            (obj) => obj.name === section
+                        );
+
+                        // navigate(`/#${Links[sectionIndex]?.name}`);
+                        setActive(sectionIndex);
+
+                        console.log(sectionIndex);
+
+                        setSpin(true);
+
+                        setTimeout(() => {
+                            setSpin(false);
+                        }, 500);
+                    }
+                });
+            },
+            {
+                root: null, // or your specific root element
+
+                threshold: 0.3, // or adjust threshold
+            }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+
+        return () => {
+            sections.forEach((section) => observer.unobserve(section));
+        };
+    }, [Links, click, setActive, setSpin]);
 
     return (
         <NavContext.Provider

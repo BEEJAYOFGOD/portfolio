@@ -54,130 +54,138 @@ export default function ContactForm() {
     };
 
     return (
-        <div className=" max-w-5xl  mx-auto my-24 bg-white rounded-lg shadow-lg p-8 ">
-            <h2 className="text-3xl font-bold text-black mb-2">Contact Me</h2>
-            <p className="text-gray-600 mb-8">
-                Please, fill out the form below and I'll get back to you as soon
-                as possible.
-            </p>
+        <section className="mb-12">
+            <h2
+                className={`md:text-5xl w-fit text-3xl font-bold ml-4 mt-12 mb-6 md:my-12 md:mx-auto md:text-center pb-2 relative tracking-wide text-blue-500 after:absolute after:bottom-0 after:left-0 after:content-[''] after:h-1 after:w-full hover:after:w-full after:duration-500 transition-all after:transition-all after:bg-blue-500`}
+            >
+                Contact Me
+            </h2>
+            <div className=" max-w-5xl  mx-auto  bg-white rounded-lg md:shadow-lg m:p-8 p-4 ">
+                <p className="text-gray-600 mb-8">
+                    Please, fill out the form below and I'll get back to you as
+                    soon as possible.
+                </p>
 
-            <form id="contact-form" onSubmit={handleSubmit}>
-                <div className="mb-6">
-                    <label
-                        htmlFor="fullname"
-                        className="block text-black font-medium mb-2"
-                    >
-                        Full Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                        type="text"
-                        id="fullname"
-                        name="fullname"
-                        data-testid="test-contact-name"
-                        placeholder="Enter your full name"
-                        aria-required="true"
-                        aria-describedby="error-name"
-                        required
-                        value={formData.fullname}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
-                            errors.fullname
-                                ? "border-red-500"
-                                : "border-gray-300"
-                        }`}
-                    />
-                    {errors.fullname && (
-                        <span
-                            className="text-red-500 text-sm mt-1 block"
-                            id="error-name"
-                            data-testid="test-contact-error-name"
-                            role="alert"
+                <form id="contact-form" onSubmit={handleSubmit}>
+                    <div className="mb-6">
+                        <label
+                            htmlFor="fullname"
+                            className="block text-black font-medium mb-2"
                         >
-                            {errors.fullname}
-                        </span>
-                    )}
-                </div>
+                            Full Name <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="fullname"
+                            name="fullname"
+                            data-testid="test-contact-name"
+                            placeholder="Enter your full name"
+                            aria-required="true"
+                            aria-describedby="error-name"
+                            required
+                            value={formData.fullname}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+                                errors.fullname
+                                    ? "border-red-500"
+                                    : "border-gray-300"
+                            }`}
+                        />
+                        {errors.fullname && (
+                            <span
+                                className="text-red-500 text-sm mt-1 block"
+                                id="error-name"
+                                data-testid="test-contact-error-name"
+                                role="alert"
+                            >
+                                {errors.fullname}
+                            </span>
+                        )}
+                    </div>
 
-                <div className="mb-6">
-                    <label
-                        htmlFor="email"
-                        className="block text-black font-medium mb-2"
-                    >
-                        Email <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        data-testid="test-contact-email"
-                        placeholder="name@example.com"
-                        aria-required="true"
-                        aria-describedby="error-email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
-                            errors.email ? "border-red-500" : "border-gray-300"
-                        }`}
-                    />
-                    {errors.email && (
-                        <span
-                            className="text-red-500 text-sm mt-1 block"
-                            id="error-email"
-                            data-testid="test-contact-error-email"
-                            role="alert"
+                    <div className="mb-6">
+                        <label
+                            htmlFor="email"
+                            className="block text-black font-medium mb-2"
                         >
-                            {errors.email}
-                        </span>
-                    )}
-                </div>
+                            Email <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            data-testid="test-contact-email"
+                            placeholder="name@example.com"
+                            aria-required="true"
+                            aria-describedby="error-email"
+                            required
+                            value={formData.email}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
+                                errors.email
+                                    ? "border-red-500"
+                                    : "border-gray-300"
+                            }`}
+                        />
+                        {errors.email && (
+                            <span
+                                className="text-red-500 text-sm mt-1 block"
+                                id="error-email"
+                                data-testid="test-contact-error-email"
+                                role="alert"
+                            >
+                                {errors.email}
+                            </span>
+                        )}
+                    </div>
 
-                <div className="mb-6">
-                    <label
-                        htmlFor="message"
-                        className="block text-black font-medium mb-2"
-                    >
-                        Message <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        data-testid="test-contact-message"
-                        placeholder="Write your message here (at least 10 characters)"
-                        aria-required="true"
-                        aria-describedby="error-message"
-                        required
-                        minLength={10}
-                        rows={5}
-                        value={formData.message}
-                        onChange={handleChange}
-                        className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none ${
-                            errors.message
-                                ? "border-red-500"
-                                : "border-gray-300"
-                        }`}
-                    />
-                    {errors.message && (
-                        <span
-                            className="text-red-500 text-sm mt-1 block"
-                            id="error-message"
-                            data-testid="test-contact-error-message"
-                            role="alert"
+                    <div className="mb-6">
+                        <label
+                            htmlFor="message"
+                            className="block text-black font-medium mb-2"
                         >
-                            {errors.message}
-                        </span>
-                    )}
-                </div>
+                            Message <span className="text-red-500">*</span>
+                        </label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            data-testid="test-contact-message"
+                            placeholder="Write your message here (at least 10 characters)"
+                            aria-required="true"
+                            aria-describedby="error-message"
+                            required
+                            minLength={10}
+                            rows={5}
+                            value={formData.message}
+                            onChange={handleChange}
+                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none ${
+                                errors.message
+                                    ? "border-red-500"
+                                    : "border-gray-300"
+                            }`}
+                        />
+                        {errors.message && (
+                            <span
+                                className="text-red-500 text-sm mt-1 block"
+                                id="error-message"
+                                data-testid="test-contact-error-message"
+                                role="alert"
+                            >
+                                {errors.message}
+                            </span>
+                        )}
+                    </div>
 
-                <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    data-testid="test-contact-submit"
-                    className="ml-auto w-fit bg-blue-500 text-white font-semibold py-3 px-12  rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition"
-                >
-                    Send Message
-                </button>
-            </form>
-        </div>
+                    <button
+                        type="submit"
+                        onClick={handleSubmit}
+                        data-testid="test-contact-submit"
+                        className="ml-auto w-fit bg-blue-500 text-white font-semibold py-3 px-12  rounded-lg hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition"
+                    >
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
     );
 }
