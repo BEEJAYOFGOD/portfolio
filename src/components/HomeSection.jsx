@@ -7,22 +7,25 @@ import github from "../assets/icons/github.svg";
 const HomeSection = () => {
     const [role, setRole] = useState("Beejayofgod");
 
-    useEffect(() => {
-        const roles = [
-            "a Frontend Dev.",
-            "Adekunle Bolaji",
-            "a Web Developer",
-            "a Software Eng.",
-        ];
-        let currentIndex = 0;
 
-        const interval = setInterval(() => {
-            currentIndex = (currentIndex + 1) % roles.length;
-            setRole(roles[currentIndex]);
-        }, 4000);
 
-        return () => clearInterval(interval);
-    }, []);
+useEffect(() => {
+    const roles = [
+        "a Frontend Dev.",
+        "Adekunle Bolaji",
+        "a Web Developer",
+        "a Software Eng.",
+    ];
+
+    let currentIndex = 0;
+
+    const interval = setInterval(() => {
+        currentIndex = (currentIndex + 1) % roles.length;
+        setRole(roles[currentIndex]);
+    }, 4000); // Consider reducing to 3 seconds for snappier feel
+
+    return () => clearInterval(interval);
+}, []);
 
     return (
         <section

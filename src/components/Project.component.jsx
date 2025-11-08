@@ -1,5 +1,4 @@
 import { ArrowRight } from "lucide-react";
-// import git_icon from "../assets/icons/git2.svg";
 import git_icon2 from "../assets/icons/icon-git.gif";
 
 const ProjectCard = ({ project }) => {
