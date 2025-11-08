@@ -83,7 +83,7 @@ const HomeSection = () => {
                     </div>
                 </a>
                 <a
-                    href="https://www.x.com/beejayofgod"
+                    href="https://www.linkedin.com/in/beejayofgod"
                     className=" transition  group  "
                 >
                     <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80  hover:duration-[1s]">
