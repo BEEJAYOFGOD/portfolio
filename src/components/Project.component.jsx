@@ -30,7 +30,7 @@ const ProjectCard = ({ project }) => {
                     <p className="text-sm text-blue-600 font-medium ">
                         Built by {project.builtBy}
                     </p>
-                    <a href="www.github.com" title="check github repo">
+                    <a href={project.github} title="check github repo">
                         <img src={git_icon2} className="w-10" alt="" />
                     </a>
                 </div>
