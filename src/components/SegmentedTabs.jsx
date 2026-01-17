@@ -11,7 +11,7 @@ const SegmentedTabs = ({ tabs, defaultIndex = 0, onChange, setTab }) => {
     };
 
     return (
-        <div className="relative  nd:w-md w-xs md:mx-auto grid h-12 auto-cols-fr mb-8 grid-flow-col rounded-lg bg-gray-100 p-1 gap-1">
+        <div className="relative  nd:w-md w-xs mx-auto grid h-12 auto-cols-fr mb-8 grid-flow-col rounded-lg bg-gray-100 p-1 gap-1">
             {/* Sliding indicator */}
             <div
                 className="absolute top-1 bottom-1 rounded-md bg-blue-600 shadow-sm transition-all duration-300 ease-out"
