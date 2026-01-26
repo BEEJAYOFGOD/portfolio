@@ -1,22 +1,22 @@
 import { FileText, Phone } from "lucide-react";
-import myPic from "../assets/pic.PNG";
+import myPic from "../assets/img/avatar.jpg";
 
 const AboutSection = () => {
     return (
         <section
-            // onClick={() => handleClick(1, Links)}
             id="about"
             data-section="about"
-            className="flex md:flex-row flex-col gap-12 h-[calc(100dvh-5rem)] items-center   max-w-5xl mx-auto "
+            className="flex md:flex-row flex-col gap-2 h-[calc(100vh-5rem)] items-center items-center  max-w-5xl mx-auto "
         >
-            <div className="br">
+            <div className="hidden md:flex ">
                 <img
-                    className="w-sm mx-auto h-full hidden md:flex"
+                    className="w-180  h-full mx-auto  "
                     src={myPic}
                     alt="Adekunle Bolaji"
                 />
             </div>
-            <div className="md:w-2xl my-auto px-6">
+
+            <div className="px-6">
                 <h2 className="text-blue-500 w-xs pb-2 md:text-5xl text-3xl relative font-bold  after:absolute after:bottom-0  after:left-0 after:content-['']  after:h-1  md:after:w-4/5 after:w-1/2 after:bg-blue-500">
                     ABOUT ME
                 </h2>
@@ -26,7 +26,7 @@ const AboutSection = () => {
                     </p>
                 </div>
 
-                <p className="mt-4 md:w-2xl text-left opacity-60 text-lg">
+                <p className="mt-4 md:w-2xl text-left opacity-60 text-sm">
                     I'm a Computer Engineering student and frontend developer
                     with a knack for solving problems and building clean,
                     responsive websites for brands, businesses, and startups.
@@ -39,7 +39,7 @@ const AboutSection = () => {
                     debugging life.
                 </p>
 
-                <div className="flex mt-8 flex-col md:flex-row items-left gap-4">
+                <div className="flex mt-4 flex-col md:flex-row items-left gap-4">
                     <a
                         href="https://1drv.ms/w/c/04c72029ead7f2ae/IQCimRdWNArKQaa2imz0FfZOAbaxYkO4lJIHjFsa2fNv2qs"
                         target="_blank"
