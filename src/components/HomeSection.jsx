@@ -1,35 +1,58 @@
 import { useEffect, useState } from "react";
-import whatsappIcon from "../assets/icons/whatsapp.svg";
-import twitter from "../assets/icons/twitter.svg";
-import linkedin from "../assets/icons/linkedin.svg";
-import github from "../assets/icons/github.svg";
+import { MessageCircle, Twitter, Github, Linkedin } from "lucide-react";
 
 const HomeSection = () => {
     const [role, setRole] = useState("Beejayofgod");
 
+    useEffect(() => {
+        const roles = [
+            "a Frontend Dev.",
+            "Adekunle Bolaji",
+            "a Web Developer",
+            "a Software Eng.",
+        ];
 
+        let currentIndex = 0;
 
-useEffect(() => {
-    const roles = [
-        "a Frontend Dev.",
-        "Adekunle Bolaji",
-        "a Web Developer",
-        "a Software Eng.",
+        const interval = setInterval(() => {
+            currentIndex = (currentIndex + 1) % roles.length;
+            setRole(roles[currentIndex]);
+        }, 4000); // Consider reducing to 3 seconds for snappier feel
+
+        return () => clearInterval(interval);
+    }, []);
+
+    // Array of social links
+    const socialLinks = [
+        {
+            name: "WhatsApp",
+            url: "https://wa.me/2348130639734",
+            icon: MessageCircle,
+            ariaLabel: "Contact me on WhatsApp",
+        },
+        {
+            name: "Twitter",
+            url: "https://www.x.com/beejayofgod",
+            icon: Twitter,
+            ariaLabel: "Follow me on Twitter",
+        },
+        {
+            name: "GitHub",
+            url: "https://www.github.com/beejayofgod",
+            icon: Github,
+            ariaLabel: "View my GitHub profile",
+        },
+        {
+            name: "LinkedIn",
+            url: "https://www.linkedin.com/in/beejayofgod",
+            icon: Linkedin,
+            ariaLabel: "Connect with me on LinkedIn",
+        },
     ];
-
-    let currentIndex = 0;
-
-    const interval = setInterval(() => {
-        currentIndex = (currentIndex + 1) % roles.length;
-        setRole(roles[currentIndex]);
-    }, 4000); // Consider reducing to 3 seconds for snappier feel
-
-    return () => clearInterval(interval);
-}, []);
 
     return (
         <section
-            className="relative flex h-[calc(100dvh-5rem)] items-center justify-center flex-col  md:py-0"
+            className="relative flex min-h-[calc(100vh-5rem)] items-center justify-center flex-col  md:py-0"
             id="home"
             data-section="home"
         >
@@ -55,51 +78,27 @@ useEffect(() => {
             </p>
 
             <div className="flex md:gap-8 gap-4 md:pt-12 pt-28">
-                <a
-                    href="https://wa.me/2348130639734"
-                    className=" transition  group  "
-                >
-                    <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80 hover:duration-[1s]">
-                        <img className="w-8 m-auto" src={whatsappIcon} alt="" />
-                    </div>
-                </a>
-
-                <a
-                    href="https://www.x.com/beejayofgod"
-                    className=" transition  group  "
-                >
-                    <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80  hover:duration-[1s]">
-                        <img className="w-8 m-auto" src={twitter} alt="" />
-                    </div>
-                </a>
-
-                <a
-                    href="https://www.github.com/beejayofgod"
-                    className=" transition  group  "
-                >
-                    <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80  hover:duration-[1s]">
-                        <img
-                            className="w-8 m-auto"
-                            src={github}
-                            alt="github icon"
-                        />
-                    </div>
-                </a>
-                <a
-                    href="https://www.linkedin.com/in/beejayofgod"
-                    className=" transition  group  "
-                >
-                    <div className="group-hover:-rotate-y-180 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80  hover:duration-[1s]">
-                        <img
-                            className="w-8 m-auto"
-                            src={linkedin}
-                            alt="linkedin icon"
-                        />
-                    </div>
-                </a>
+                {socialLinks.map((social) => (
+                    <a
+                        key={social.name}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.ariaLabel}
+                        className="transition group"
+                    >
+                        <div className="group-hover:rotate-12 group-hover:scale-110 hover:ease-in-out ease-in hover:transition-all duration-300 bg-blue-200 md:p-4 p-3 rounded-full hover:bg-blue-300/80 hover:shadow-lg">
+                            <social.icon
+                                className="w-8 h-8 m-auto text-blue-700"
+                                strokeWidth={2}
+                            />
+                        </div>
+                    </a>
+                ))}
             </div>
         </section>
     );
 };
 
 export default HomeSection;
+

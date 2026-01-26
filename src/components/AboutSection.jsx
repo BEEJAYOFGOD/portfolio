@@ -26,26 +26,32 @@ const AboutSection = () => {
                     </p>
                 </div>
 
-                <p className="md:mt-8 mt-4 md:w-2xl text-left opacity-60 text-lg">
+                <p className="mt-4 md:w-2xl text-left opacity-60 text-lg">
                     I'm a Computer Engineering student and frontend developer
                     with a knack for solving problems and building clean,
                     responsive websites for brands, businesses, and startups.
-                    <br /> <br /> My coding journey kicked off when I took a
-                    Python course in school and realized I enjoyed telling
-                    computers what to do (and having them actually listen). When
-                    I'm not writing code or refining user interfaces, you'll
-                    probably catch me unwinding with a heated round of
-                    eFootball—my way of debugging life.
+                    <br />
+                    My coding journey kicked off when I took a Python course in
+                    school and realized I enjoyed telling computers what to do
+                    (and having them actually listen). When I'm not writing code
+                    or refining user interfaces, you'll probably catch me
+                    unwinding with a heated round of eFootball—my way of
+                    debugging life.
                 </p>
 
                 <div className="flex mt-8 flex-col md:flex-row items-left gap-4">
-                    <a className="flex items-center justify-center gap-4 md:text-base px-4 md:py-3 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    <a
+                        href="https://1drv.ms/w/c/04c72029ead7f2ae/IQCimRdWNArKQaa2imz0FfZOAbaxYkO4lJIHjFsa2fNv2qs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center gap-4 md:text-base px-6 md:py-2 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
                         <FileText size={20} />
                         View Resume
                     </a>
                     <a
                         href=""
-                        className="flex items-center justify-center md:text-base gap-4 border-blue-500 border px-4 py-4 md:py-3 rounded-md text-blue-600"
+                        className="flex items-center justify-center md:text-base gap-4 border-blue-500 border px-6 py-4 md:py-2 rounded-md text-blue-600"
                     >
                         <Phone className="animate-bounce" />
                         Book a call with me
