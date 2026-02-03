@@ -8,7 +8,7 @@ import ManifestPng from "../assets/img/manifest.png";
 import SegmentedTabs from "@/components/SegmentedTabs";
 import TourFlow from "@/assets/img/tourflow.png";
 import TickoPng from "@/assets/img/ticko.png";
-import DatasetPng from "@/assets/img/dataVista.png"
+import DatasetPng from "@/assets/img/datavista.png"
 
 
 const ProjectsSection = () => {
