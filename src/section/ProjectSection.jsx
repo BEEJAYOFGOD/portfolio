@@ -35,7 +35,7 @@ const ProjectsSection = () => {
                     "TailwindCss",
                 ],
                 imageUrl: ManifestPng,
-                link: "https://manifest.app",
+                link: "https://manifesti.app",
                 category: "web",
                 github: "",
             },
@@ -52,7 +52,7 @@ const ProjectsSection = () => {
                     "Recharts"
                 ],
                 imageUrl: DatasetPng,
-                link: "https://manifest.app",
+                link: "https://data-vista-tp64.vercel.app/",
                 category: "web",
                 github: "",
             },
