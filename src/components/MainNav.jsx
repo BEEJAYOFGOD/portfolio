@@ -25,11 +25,10 @@ const MainNav = () => {
                         {Links.map((link, index) => (
                             <li
                                 key={index}
-                                className={`transition-colors ease-in-out text-base w-full duration-700 flex  hover:text-blue-400 cursor-pointer capitalize ${
-                                    active === index
+                                className={`transition-colors ease-in-out text-base w-full duration-700 flex  hover:text-blue-400 cursor-pointer capitalize ${active === index
                                         ? "text-blue-500 font-semibold  rounded-md p-3 md:p-0"
                                         : "text-gray-600"
-                                } `}
+                                    } `}
                             >
                                 <NavLink
                                     to={link.path}
@@ -54,9 +53,8 @@ const MainNav = () => {
                             className="w-1/5 transition-all duration-[350ms] ease-in-out "
                         >
                             <div
-                                className={`h-2 rounded-xs aspect-square mx-auto  bg-blue-500 ${
-                                    spin ? "animate-spin duration-500" : ""
-                                }`}
+                                className={`h-2 rounded-xs aspect-square mx-auto  bg-blue-500 ${spin ? "animate-spin duration-500" : ""
+                                    }`}
                             />
                         </div>
                     </div>

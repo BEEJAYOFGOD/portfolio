@@ -8,6 +8,7 @@ import ManifestPng from "../assets/img/manifest.png";
 import SegmentedTabs from "@/components/SegmentedTabs";
 import TourFlow from "@/assets/img/tourflow.png";
 import TickoPng from "@/assets/img/ticko.png";
+import datavista from "@/assets/img/datavista.png"
 
 const ProjectsSection = () => {
     const [activeTab, setActiveTab] = useState("all");
@@ -39,6 +40,25 @@ const ProjectsSection = () => {
                 category: "web",
                 github: "",
             },
+            {
+                id: 1,
+                name: "Data Vista",
+                description:
+                    "A high-performance web analytics application that enables users to upload, transform, and visualize CSV datasets with persistent data storage.",
+                technologies: [
+                    "React + TypeScript",
+                    "Supabase",
+                    "ShadCn",
+                    "TailwindCss",
+                    "Recharts"
+                ],
+                imageUrl: datavista,
+                projectUrl: "#",
+                link: "https://manifest.app",
+                category: "web",
+                github: "",
+            },
+
             {
                 id: 2,
                 name: "Space Tourism Website",
@@ -153,8 +173,8 @@ const ProjectsSection = () => {
             activeTab === "all"
                 ? projectsData
                 : projectsData.filter(
-                      (project) => project.category === activeTab,
-                  ),
+                    (project) => project.category === activeTab,
+                ),
         [activeTab, projectsData],
     );
 

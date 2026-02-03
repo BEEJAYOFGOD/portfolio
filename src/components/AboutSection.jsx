@@ -1,4 +1,4 @@
-import { FileText, Phone } from "lucide-react";
+import { FileText, Mail } from "lucide-react";
 import myPic from "../assets/img/avatar.jpg";
 
 const AboutSection = () => {
@@ -6,7 +6,7 @@ const AboutSection = () => {
         <section
             id="about"
             data-section="about"
-            className="flex md:flex-row flex-col gap-2 h-[calc(100vh-5rem)] items-center items-center  max-w-5xl mx-auto "
+            className="flex md:flex-row flex-col gap-2 h-[calc(100vh-5rem)] items-center  max-w-5xl mx-auto "
         >
             <div className="hidden md:flex ">
                 <img
@@ -53,8 +53,8 @@ const AboutSection = () => {
                         href=""
                         className="flex items-center justify-center md:text-base gap-4 border-blue-500 border px-6 py-4 md:py-2 rounded-md text-blue-600"
                     >
-                        <Phone className="animate-bounce" />
-                        Book a call with me
+                        <Mail className="animate-bounce" />
+                        Contact Me
                     </a>
                 </div>
             </div>
