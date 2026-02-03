@@ -10,6 +10,7 @@ import TourFlow from "@/assets/img/tourflow.png";
 import TickoPng from "@/assets/img/ticko.png";
 import DatasetPng from "@/assets/img/dataVista.png"
 
+
 const ProjectsSection = () => {
     const [activeTab, setActiveTab] = useState("all");
 
@@ -51,7 +52,7 @@ const ProjectsSection = () => {
                     "TailwindCss",
                     "Recharts"
                 ],
-                imageUrl: datavista,
+                imageUrl: DatasetPng,
                 link: "https://manifest.app",
                 category: "web",
                 github: "",
