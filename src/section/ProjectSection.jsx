@@ -13,7 +13,6 @@ import DatasetPng from "@/assets/img/dataVista.png"
 
 const ProjectsSection = () => {
     const [activeTab, setActiveTab] = useState("all");
-
     const tabs = ["all", "web", "mobile"];
 
     const handleTabChange = (index) => {
